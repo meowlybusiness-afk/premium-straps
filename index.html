@@ -1468,7 +1468,15 @@
 
   // ===== LIVE COUNTER =====
   const COUNTER_BASE = 374;
+  const COUNTER_CACHE_KEY = 'ps_waitlist_count';
   const counterEl = document.getElementById('counter-number');
+
+  // On load: use cached value (if any) so repeat visitors see the real number instantly.
+  // First-time visitors see 374 baseline, then it animates up after fetch.
+  const cached = parseInt(localStorage.getItem(COUNTER_CACHE_KEY), 10);
+  if (!isNaN(cached) && cached >= COUNTER_BASE) {
+    counterEl.textContent = cached;
+  }
 
   // Fetch the current row count from Apps Script (GET request)
   async function loadCount() {
@@ -1476,10 +1484,17 @@
       const res = await fetch(SCRIPT_URL + '?action=count', { method: 'GET' });
       const data = await res.json();
       if (typeof data.count === 'number') {
-        animateCounter(COUNTER_BASE + data.count);
+        const target = COUNTER_BASE + data.count;
+        localStorage.setItem(COUNTER_CACHE_KEY, target);
+        const current = parseInt(counterEl.textContent, 10) || COUNTER_BASE;
+        if (target > current) {
+          animateCounter(target);
+        } else {
+          counterEl.textContent = target;
+        }
       }
     } catch (err) {
-      // silent — keep baseline
+      // silent — keep current value
     }
   }
 
@@ -1504,6 +1519,7 @@
   function bumpCounter() {
     const val = parseInt(counterEl.textContent, 10) + 1;
     counterEl.textContent = val;
+    localStorage.setItem(COUNTER_CACHE_KEY, val);
     counterEl.classList.add('bump');
     setTimeout(() => counterEl.classList.remove('bump'), 400);
   }
