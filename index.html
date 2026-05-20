@@ -310,7 +310,19 @@
     width: 85%;
     height: 85%;
     object-fit: contain;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
   }
+ 
+  /* default: strap visible, watch hidden */
+  .color-image .img-watch { opacity: 0; }
+  .color-image .img-strap { opacity: 1; }
+ 
+  /* on hover: crossfade — watch fades in, strap fades out */
+  .color-card:hover .color-image .img-watch { opacity: 1; }
+  .color-card:hover .color-image .img-strap { opacity: 0; }
  
   .color-card:hover .color-image {
     box-shadow: 0 12px 32px rgba(0,0,0,0.08);
@@ -760,42 +772,66 @@
  
     <div class="colors-grid">
       <div class="color-card" onclick="openModal('blanc')">
-        <div class="color-image"><img src="images/strap-blanc.png" alt="Blanc strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-blanc.png" alt="Blanc strap">
+          <img class="img-watch" src="images/watch-blanc.png" alt="Blanc Royal Pop">
+        </div>
         <div class="color-name">Blanc</div>
         <div class="color-meta">White</div>
       </div>
       <div class="color-card" onclick="openModal('noir')">
-        <div class="color-image"><img src="images/watch-noir.png" alt="Noir strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-noir.png" alt="Noir strap">
+          <img class="img-watch" src="images/watch-noir.png" alt="Noir Royal Pop">
+        </div>
         <div class="color-name">Noir</div>
         <div class="color-meta">Black</div>
       </div>
       <div class="color-card" onclick="openModal('verde')">
-        <div class="color-image"><img src="images/strap-verde.png" alt="Verde strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-verde.png" alt="Verde strap">
+          <img class="img-watch" src="images/watch-verde.png" alt="Verde Royal Pop">
+        </div>
         <div class="color-name">Verde</div>
         <div class="color-meta">Green</div>
       </div>
       <div class="color-card" onclick="openModal('jaune')">
-        <div class="color-image"><img src="images/strap-jaune.png" alt="Jaune strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-jaune.png" alt="Jaune strap">
+          <img class="img-watch" src="images/watch-jaune.png" alt="Jaune Royal Pop">
+        </div>
         <div class="color-name">Jaune</div>
         <div class="color-meta">Cream</div>
       </div>
       <div class="color-card" onclick="openModal('lanba')">
-        <div class="color-image"><img src="images/strap-lanba.png" alt="Lan Ba strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-lanba.png" alt="Lan Ba strap">
+          <img class="img-watch" src="images/watch-lanba.png" alt="Lan Ba Royal Pop">
+        </div>
         <div class="color-name">Lan Ba</div>
         <div class="color-meta">Deep Blue</div>
       </div>
       <div class="color-card" onclick="openModal('bleumer')">
-        <div class="color-image"><img src="images/strap-bleumer.png" alt="Bleu Mer strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-bleumer.png" alt="Bleu Mer strap">
+          <img class="img-watch" src="images/watch-bleumer.png" alt="Bleu Mer Royal Pop">
+        </div>
         <div class="color-name">Bleu Mer</div>
         <div class="color-meta">Turquoise</div>
       </div>
       <div class="color-card" onclick="openModal('rose')">
-        <div class="color-image"><img src="images/strap-rose.png" alt="Rose strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-rose.png" alt="Rose strap">
+          <img class="img-watch" src="images/watch-rose.png" alt="Rose Royal Pop">
+        </div>
         <div class="color-name">Rose</div>
         <div class="color-meta">Pink</div>
       </div>
       <div class="color-card" onclick="openModal('orenji')">
-        <div class="color-image"><img src="images/strap-orenji.png" alt="Orenji strap"></div>
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-orenji.png" alt="Orenji strap">
+          <img class="img-watch" src="images/watch-orenji.png" alt="Orenji Royal Pop">
+        </div>
         <div class="color-name">Orenji</div>
         <div class="color-meta">Navy + Orange</div>
       </div>
@@ -990,14 +1026,8 @@
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.name;
     document.getElementById('modalDesc').textContent = data.desc;
-    // Noir files are swapped on the server — handle by swapping the refs here
-    if (color === 'noir') {
-      document.getElementById('modalStrapImg').src = `images/watch-noir.png`;
-      document.getElementById('modalWatchImg').src = `images/strap-noir.png`;
-    } else {
-      document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
-      document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
-    }
+    document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
+    document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
