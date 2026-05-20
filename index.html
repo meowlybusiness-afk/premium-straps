@@ -96,7 +96,7 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
-    opacity: 0.22;
+    opacity: 0.12;
   }
  
   /* Subtle white veil over hero image for text legibility */
@@ -781,8 +781,8 @@
       </div>
       <div class="color-card" onclick="openModal('noir')">
         <div class="color-image">
-          <img class="img-strap" src="images/strap-noir.png" alt="Noir strap">
-          <img class="img-watch" src="images/watch-noir.png" alt="Noir Royal Pop">
+          <img class="img-strap" src="images/watch-noir.png" alt="Noir strap">
+          <img class="img-watch" src="images/strap-noir.png" alt="Noir Royal Pop">
         </div>
         <div class="color-name">Noir</div>
         <div class="color-meta">Black</div>
@@ -1026,8 +1026,14 @@
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.name;
     document.getElementById('modalDesc').textContent = data.desc;
-    document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
-    document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
+    // Noir files are swapped on the server — swap refs here
+    if (color === 'noir') {
+      document.getElementById('modalStrapImg').src = `images/watch-noir.png`;
+      document.getElementById('modalWatchImg').src = `images/strap-noir.png`;
+    } else {
+      document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
+      document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
+    }
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
