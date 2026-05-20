@@ -92,11 +92,12 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/hero-watch.jpg');
-    background-size: cover;
+    background-image: url('images/hero-watch.png');
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
+    opacity: 0.18;
   }
 
   /* Subtle white veil over hero image for text legibility */
@@ -105,23 +106,9 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.4) 40%,
-      rgba(255,255,255,0.6) 100%);
-  }
-
-  /* Fallback if no image */
-  .hero-bg:not([style*="url"])::before {
-    content: 'HERO IMAGE → images/hero-watch.jpg';
-    position: absolute;
-    bottom: 20px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.18em;
-    background: rgba(255,255,255,0.8);
-    padding: 6px 12px;
-    border-radius: 4px;
+      rgba(255,255,255,0.5) 0%,
+      rgba(255,255,255,0.2) 40%,
+      rgba(255,255,255,0.5) 100%);
   }
 
   .hero-content {
@@ -313,23 +300,21 @@
     aspect-ratio: 1;
     border-radius: 18px;
     background-color: var(--bg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     margin-bottom: 16px;
     overflow: hidden;
     position: relative;
     display: flex; align-items: center; justify-content: center;
+    transition: box-shadow 0.3s;
   }
 
-  /* Placeholder fallback inside color-image when no image set */
-  .color-image .placeholder-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 8px 12px;
+  .color-image img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+
+  .color-card:hover .color-image {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
   }
 
   .color-name {
@@ -343,6 +328,116 @@
     font-size: 13px;
     color: var(--text-muted);
     text-align: center;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: var(--bg);
+    border-radius: 28px;
+    max-width: 980px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 48px;
+  }
+
+  @media (max-width: 700px) {
+    .modal-content { padding: 28px 22px; border-radius: 22px; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--bg-alt);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 22px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+
+  .modal-close:hover { background: var(--border); }
+
+  .modal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 700px) {
+    .modal-images { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  .modal-image-wrapper {
+    background: var(--bg-alt);
+    border-radius: 20px;
+    aspect-ratio: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .modal-image-wrapper img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+  }
+
+  .modal-image-label {
+    position: absolute;
+    bottom: 16px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .modal-info {
+    text-align: center;
+  }
+
+  .modal-info h3 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .modal-info p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
   }
 
   /* MANIFESTO */
@@ -660,70 +755,75 @@
 
 <section id="colors" class="section-tinted">
   <div class="section-inner">
-    <p class="section-eyebrow">Pick yours.</p>
     <h2>Eight colors.</h2>
-    <p class="section-sub">Each strap matched to the Royal Pop colorway it complements.</p>
+    <p class="section-sub">Each strap matched to the Royal Pop colorway it complements. Tap any color to explore.</p>
 
     <div class="colors-grid">
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-blanc.jpg');">
-          <span class="placeholder-label">strap-blanc.jpg</span>
-        </div>
+      <div class="color-card" onclick="openModal('blanc')">
+        <div class="color-image"><img src="images/strap-blanc.png" alt="Blanc strap"></div>
         <div class="color-name">Blanc</div>
         <div class="color-meta">White</div>
       </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-noir.jpg');">
-          <span class="placeholder-label">strap-noir.jpg</span>
-        </div>
+      <div class="color-card" onclick="openModal('noir')">
+        <div class="color-image"><img src="images/strap-noir.png" alt="Noir strap"></div>
         <div class="color-name">Noir</div>
         <div class="color-meta">Black</div>
       </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-rosso.jpg');">
-          <span class="placeholder-label">strap-rosso.jpg</span>
-        </div>
-        <div class="color-name">Rosso</div>
-        <div class="color-meta">Red</div>
-      </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-orenji.jpg');">
-          <span class="placeholder-label">strap-orenji.jpg</span>
-        </div>
-        <div class="color-name">Orenji</div>
-        <div class="color-meta">Orange</div>
-      </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-jaune.jpg');">
-          <span class="placeholder-label">strap-jaune.jpg</span>
-        </div>
-        <div class="color-name">Jaune</div>
-        <div class="color-meta">Yellow</div>
-      </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-verde.jpg');">
-          <span class="placeholder-label">strap-verde.jpg</span>
-        </div>
+      <div class="color-card" onclick="openModal('verde')">
+        <div class="color-image"><img src="images/strap-verde.png" alt="Verde strap"></div>
         <div class="color-name">Verde</div>
         <div class="color-meta">Green</div>
       </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-lanba.jpg');">
-          <span class="placeholder-label">strap-lanba.jpg</span>
-        </div>
-        <div class="color-name">Lan Ba</div>
-        <div class="color-meta">Blue</div>
+      <div class="color-card" onclick="openModal('jaune')">
+        <div class="color-image"><img src="images/strap-jaune.png" alt="Jaune strap"></div>
+        <div class="color-name">Jaune</div>
+        <div class="color-meta">Cream</div>
       </div>
-      <div class="color-card">
-        <div class="color-image" style="background-image: url('images/strap-lilas.jpg');">
-          <span class="placeholder-label">strap-lilas.jpg</span>
-        </div>
-        <div class="color-name">Lilas</div>
-        <div class="color-meta">Lilac</div>
+      <div class="color-card" onclick="openModal('lanba')">
+        <div class="color-image"><img src="images/strap-lanba.png" alt="Lan Ba strap"></div>
+        <div class="color-name">Lan Ba</div>
+        <div class="color-meta">Deep Blue</div>
+      </div>
+      <div class="color-card" onclick="openModal('bleumer')">
+        <div class="color-image"><img src="images/strap-bleumer.png" alt="Bleu Mer strap"></div>
+        <div class="color-name">Bleu Mer</div>
+        <div class="color-meta">Turquoise</div>
+      </div>
+      <div class="color-card" onclick="openModal('rose')">
+        <div class="color-image"><img src="images/strap-rose.png" alt="Rose strap"></div>
+        <div class="color-name">Rose</div>
+        <div class="color-meta">Pink</div>
+      </div>
+      <div class="color-card" onclick="openModal('orenji')">
+        <div class="color-image"><img src="images/strap-orenji.png" alt="Orenji strap"></div>
+        <div class="color-name">Orenji</div>
+        <div class="color-meta">Navy + Orange</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-images">
+      <div class="modal-image-wrapper">
+        <img id="modalStrapImg" src="" alt="Strap">
+        <p class="modal-image-label">The strap</p>
+      </div>
+      <div class="modal-image-wrapper">
+        <img id="modalWatchImg" src="" alt="On the watch">
+        <p class="modal-image-label">On the Royal Pop</p>
+      </div>
+    </div>
+    <div class="modal-info">
+      <h3 id="modalTitle">Noir.</h3>
+      <p id="modalDesc">Matte black silicone. Crafted to complement the Royal Pop Noir colorway.</p>
+      <button class="btn-primary" onclick="reserveColor()">Reserve in this color</button>
+    </div>
+  </div>
+</div>
 
 <section class="section-dark manifesto">
   <div class="section-inner">
@@ -831,12 +931,12 @@
           <option value="">Choose a color</option>
           <option value="Blanc">Blanc — White</option>
           <option value="Noir">Noir — Black</option>
-          <option value="Rosso">Rosso — Red</option>
-          <option value="Orenji">Orenji — Orange</option>
-          <option value="Jaune">Jaune — Yellow</option>
           <option value="Verde">Verde — Green</option>
-          <option value="Lan Ba">Lan Ba — Blue</option>
-          <option value="Lilas">Lilas — Lilac</option>
+          <option value="Jaune">Jaune — Cream</option>
+          <option value="Lan Ba">Lan Ba — Deep Blue</option>
+          <option value="Bleu Mer">Bleu Mer — Turquoise</option>
+          <option value="Rose">Rose — Pink</option>
+          <option value="Orenji">Orenji — Navy + Orange</option>
           <option value="Undecided">I'll decide later</option>
         </select>
       </div>
@@ -873,6 +973,68 @@
 </footer>
 
 <script>
+  // PRODUCT MODAL DATA
+  const colorData = {
+    blanc:   { name: 'Blanc.',    desc: 'Soft, off-white silicone with a powdery matte finish. Designed to complement the white Royal Pop colorway.' },
+    noir:    { name: 'Noir.',     desc: 'Deep matte black silicone. The most versatile colorway, pairing with every Royal Pop variant.' },
+    verde:   { name: 'Verde.',    desc: 'Emerald green silicone. A bold complement to the Verde Royal Pop, or a striking contrast on other models.' },
+    jaune:   { name: 'Jaune.',    desc: 'Warm cream-yellow silicone. Subtle, sophisticated, and pairs beautifully with the Lan Ba Lépine.' },
+    lanba:   { name: 'Lan Ba.',   desc: 'Deep navy silicone, named after the iconic Lan Ba Savonnette. Marine blue with quiet authority.' },
+    bleumer: { name: 'Bleu Mer.', desc: 'Aqua turquoise silicone with a sea-glass softness. Pairs naturally with the turquoise Royal Pop colorway.' },
+    rose:    { name: 'Rose.',     desc: 'Powdery pink silicone, restrained and refined. Pairs with the Rose Royal Pop or adds warmth to neutrals.' },
+    orenji:  { name: 'Orenji.',   desc: 'Deep navy with the unmistakable orange basketball-stitch detail. The collector\'s choice.' }
+  };
+
+  function openModal(color) {
+    const data = colorData[color];
+    if (!data) return;
+    document.getElementById('modalTitle').textContent = data.name;
+    document.getElementById('modalDesc').textContent = data.desc;
+    document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
+    document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    window.currentColor = color;
+  }
+
+  function closeModal(event) {
+    if (event && event.target.id !== 'productModal' && event.type !== undefined) {
+      // only close on overlay click or explicit call
+      if (event.target.id !== 'productModal') return;
+    }
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function reserveColor() {
+    const color = window.currentColor;
+    closeModal();
+    // scroll to waitlist
+    document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+    // pre-select the color in the dropdown after a small delay
+    setTimeout(() => {
+      const select = document.getElementById('color');
+      if (select) {
+        const colorMap = {
+          blanc: 'Blanc', noir: 'Noir', verde: 'Verde', jaune: 'Jaune',
+          lanba: 'Lan Ba', bleumer: 'Bleu Mer', rose: 'Rose', orenji: 'Orenji'
+        };
+        const targetText = colorMap[color];
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(targetText)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }, 600);
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
   // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
