@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premium Straps — For the AP × Swatch Royal Pop</title>
 <meta name="description" content="Premium 3D-printed adapter and silicone strap for the AP × Swatch Royal Pop. Made in Riga. Eight colors.">
-<link rel="icon" type="image/png" href="logo-monogram.png">
-<link rel="apple-touch-icon" href="logo-monogram.png">
+<link rel="icon" type="image/png" href="images/logo-monogram.png">
+<link rel="apple-touch-icon" href="images/logo-monogram.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -92,7 +92,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-image: url('hero-lineup.png');
+    background-image: url('images/hero-watch.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -760,42 +760,42 @@
 
     <div class="colors-grid">
       <div class="color-card" onclick="openModal('blanc')">
-        <div class="color-image"><img src="strap-blanc.png" alt="Blanc strap"></div>
+        <div class="color-image"><img src="images/strap-blanc.png" alt="Blanc strap"></div>
         <div class="color-name">Blanc</div>
         <div class="color-meta">White</div>
       </div>
       <div class="color-card" onclick="openModal('noir')">
-        <div class="color-image"><img src="strap-noir.png" alt="Noir strap"></div>
+        <div class="color-image"><img src="images/strap-noir.png" alt="Noir strap"></div>
         <div class="color-name">Noir</div>
         <div class="color-meta">Black</div>
       </div>
       <div class="color-card" onclick="openModal('verde')">
-        <div class="color-image"><img src="strap-verde.png" alt="Verde strap"></div>
+        <div class="color-image"><img src="images/strap-verde.png" alt="Verde strap"></div>
         <div class="color-name">Verde</div>
         <div class="color-meta">Green</div>
       </div>
       <div class="color-card" onclick="openModal('jaune')">
-        <div class="color-image"><img src="strap-jaune.png" alt="Jaune strap"></div>
+        <div class="color-image"><img src="images/strap-jaune.png" alt="Jaune strap"></div>
         <div class="color-name">Jaune</div>
         <div class="color-meta">Cream</div>
       </div>
       <div class="color-card" onclick="openModal('lanba')">
-        <div class="color-image"><img src="strap-lanba.png" alt="Lan Ba strap"></div>
+        <div class="color-image"><img src="images/strap-lanba.png" alt="Lan Ba strap"></div>
         <div class="color-name">Lan Ba</div>
         <div class="color-meta">Deep Blue</div>
       </div>
       <div class="color-card" onclick="openModal('bleumer')">
-        <div class="color-image"><img src="strap-bleumer.png" alt="Bleu Mer strap"></div>
+        <div class="color-image"><img src="images/strap-bleumer.png" alt="Bleu Mer strap"></div>
         <div class="color-name">Bleu Mer</div>
         <div class="color-meta">Turquoise</div>
       </div>
       <div class="color-card" onclick="openModal('rose')">
-        <div class="color-image"><img src="strap-rose.png" alt="Rose strap"></div>
+        <div class="color-image"><img src="images/strap-rose.png" alt="Rose strap"></div>
         <div class="color-name">Rose</div>
         <div class="color-meta">Pink</div>
       </div>
       <div class="color-card" onclick="openModal('orenji')">
-        <div class="color-image"><img src="strap-orenji.png" alt="Orenji strap"></div>
+        <div class="color-image"><img src="images/strap-orenji.png" alt="Orenji strap"></div>
         <div class="color-name">Orenji</div>
         <div class="color-meta">Navy + Orange</div>
       </div>
@@ -990,8 +990,8 @@
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.name;
     document.getElementById('modalDesc').textContent = data.desc;
-    document.getElementById('modalStrapImg').src = `strap-${color}.png`;
-    document.getElementById('modalWatchImg').src = `watch-${color}.png`;
+    document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
+    document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
