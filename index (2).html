@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Straps — For the AP × Swatch Royal Pop</title>
+<meta name="description" content="Premium 3D-printed adapter and silicone strap for the AP × Swatch Royal Pop. Made in Riga. Eight colors.">
+<link rel="icon" type="image/png" href="logo-monogram.png">
+<link rel="apple-touch-icon" href="logo-monogram.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f5f7;
+    --bg-dark: #000000;
+    --text: #1d1d1f;
+    --text-muted: #6e6e73;
+    --text-on-dark: #f5f5f7;
+    --border: rgba(0,0,0,0.08);
+    --blue: #0071e3;
+    --blue-hover: #0077ed;
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.47;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 64px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex; align-items: center;
+  }
+
+  .nav-inner {
+    width: 100%; max-width: 1024px; margin: 0 auto;
+    padding: 0 22px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 18px; font-weight: 600;
+    letter-spacing: -0.022em;
+    color: var(--text); text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+
+  .nav-link {
+    font-size: 12px; font-weight: 400;
+    color: var(--text); text-decoration: none;
+    opacity: 0.8; transition: opacity 0.3s;
+  }
+
+  .nav-link:hover { opacity: 1; }
+
+  @media (max-width: 600px) { .nav-links .nav-link { display: none; } }
+
+  /* HERO with background image */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 160px 22px 80px;
+    text-align: center;
+    background: var(--bg-alt);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('hero-lineup.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0.22;
+  }
+
+  /* Subtle white veil over hero image for text legibility */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,255,255,0.3) 40%,
+      rgba(255,255,255,0.7) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 21px; font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.011em;
+    margin-bottom: 6px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 104px);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .hero-sub {
+    font-size: clamp(21px, 3vw, 28px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.004em;
+    line-height: 1.14;
+    max-width: 720px;
+    margin: 0 auto 24px;
+  }
+
+  .hero-price {
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-price strong { font-weight: 600; }
+
+  .hero-actions {
+    display: flex; gap: 24px;
+    justify-content: center; align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 400;
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 980px;
+    text-decoration: none;
+    transition: background 0.2s;
+    min-width: 160px;
+  }
+
+  .btn-primary:hover { background: var(--blue-hover); }
+
+  .btn-link {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-link::after { content: ' ›'; }
+  .btn-link:hover { opacity: 0.8; }
+
+  /* SECTIONS */
+  section { padding: 100px 22px; }
+
+  .section-tinted {
+    background: var(--bg-alt);
+    border-radius: 20px;
+    margin: 12px;
+    padding: 100px 22px;
+  }
+
+  .section-dark {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+    border-radius: 20px;
+    margin: 12px;
+    padding: 100px 22px;
+  }
+
+  .section-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-size: 17px; font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    line-height: 1.07;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.009em;
+    line-height: 1.33;
+    max-width: 640px;
+    margin: 0 auto 60px;
+  }
+
+  .section-dark .section-sub { color: rgba(245,245,247,0.7); }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 800px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+
+  .feature {
+    background: var(--bg);
+    border-radius: 18px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .feature:hover { transform: translateY(-4px); }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    margin: 0 auto 20px;
+    color: var(--text);
+  }
+
+  .feature h3 {
+    font-size: 24px; font-weight: 600;
+    letter-spacing: 0.004em;
+    margin-bottom: 8px;
+  }
+
+  .feature p {
+    font-size: 15px; color: var(--text-muted);
+    line-height: 1.47;
+  }
+
+  /* COLORS GRID with images */
+  .colors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .colors-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+
+  .color-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .color-card:hover { transform: translateY(-8px); }
+
+  .color-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 18px;
+    background-color: var(--bg);
+    margin-bottom: 16px;
+    overflow: hidden;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    transition: box-shadow 0.3s;
+  }
+
+  .color-image img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+
+  .color-card:hover .color-image {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  }
+
+  .color-name {
+    font-size: 17px; font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    text-align: center;
+  }
+
+  .color-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: var(--bg);
+    border-radius: 28px;
+    max-width: 980px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 48px;
+  }
+
+  @media (max-width: 700px) {
+    .modal-content { padding: 28px 22px; border-radius: 22px; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--bg-alt);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 22px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+
+  .modal-close:hover { background: var(--border); }
+
+  .modal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 700px) {
+    .modal-images { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  .modal-image-wrapper {
+    background: var(--bg-alt);
+    border-radius: 20px;
+    aspect-ratio: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .modal-image-wrapper img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+  }
+
+  .modal-image-label {
+    position: absolute;
+    bottom: 16px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .modal-info {
+    text-align: center;
+  }
+
+  .modal-info h3 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .modal-info p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
+  }
+
+  /* MANIFESTO */
+  .manifesto h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.003em;
+    color: var(--text-on-dark);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .manifesto h2 .accent { color: var(--text-muted); }
+
+  /* WAITLIST */
+  .waitlist {
+    background: var(--bg);
+    padding: 100px 22px;
+  }
+
+  .waitlist-card {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .waitlist h2 { margin-bottom: 12px; }
+
+  form { margin-top: 48px; text-align: left; }
+
+  .form-group { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 12px; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.003em;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%231d1d1f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.15);
+  }
+
+  input::placeholder { color: var(--text-muted); }
+
+  button[type="submit"] {
+    width: 100%;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 980px;
+    font-family: inherit;
+    font-size: 17px; font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 16px;
+  }
+
+  button[type="submit"]:hover { background: var(--blue-hover); }
+  button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+
+  .success { display: none; text-align: center; padding: 40px 0; }
+  .success.show { display: block; }
+
+  .success-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 24px;
+    background: #34c759;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+
+  .success h3 {
+    font-size: 28px; font-weight: 600;
+    letter-spacing: -0.003em;
+    margin-bottom: 8px;
+  }
+
+  .success p { color: var(--text-muted); font-size: 17px; }
+
+  /* FAQ */
+  .faq {
+    background: var(--bg);
+    padding: 100px 22px;
+  }
+
+  .faq-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .faq-header { text-align: center; margin-bottom: 60px; }
+
+  .faq-list {
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    letter-spacing: -0.003em;
+    transition: opacity 0.2s;
+  }
+
+  .faq-question:hover { opacity: 0.7; }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--text);
+    border-radius: 1px;
+  }
+
+  .faq-icon::before {
+    width: 16px; height: 1.5px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-icon::after {
+    width: 1.5px; height: 16px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 600px;
+    padding-bottom: 28px;
+  }
+
+  .faq-answer p {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .faq-answer p:last-child { margin-bottom: 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    padding: 40px 22px 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .footer-inner { max-width: 980px; margin: 0 auto; }
+
+  .footer-top {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .footer-top a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-right: 24px;
+  }
+
+  .footer-top a:hover { color: var(--text); text-decoration: underline; }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .disclaimer {
+    font-size: 11px;
+    max-width: 640px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Premium Straps</a>
+    <div class="nav-links">
+      <a href="#colors" class="nav-link">Colors</a>
+      <a href="#specs" class="nav-link">Specs</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#waitlist" class="nav-link">Waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New</p>
+    <h1>Premium Straps.</h1>
+    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">Join waitlist</a>
+      <a href="#colors" class="btn-link">See colors</a>
+    </div>
+  </div>
+</header>
+
+<section id="specs">
+  <div class="section-inner">
+    <p class="section-eyebrow">Engineered for the everyday.</p>
+    <h2>Three things matter.</h2>
+    <p class="section-sub">Material. Precision. Craft. Each chosen so the strap outlasts the trend.</p>
+
+    <div class="features-grid">
+      <div class="feature">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 4L8 12v12c0 10 7 19 16 22 9-3 16-12 16-22V12L24 4z"/>
+        </svg>
+        <h3>Swiss-grade TPU</h3>
+        <p>The same flexible polymer density used in premium watchmaker straps. Tear-resistant. Hypoallergenic.</p>
+      </div>
+      <div class="feature">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="20"/>
+          <path d="M24 12v12l8 4"/>
+        </svg>
+        <h3>7 days to your door</h3>
+        <p>Printed and packed in Europe. Shipped within 7 days with tracking included.</p>
+      </div>
+      <div class="feature">
+        <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="8" width="32" height="32" rx="6"/>
+          <path d="M18 18h12v12H18z"/>
+        </svg>
+        <h3>Both crowns</h3>
+        <p>Designed for both the Lépine and Savonnette models. One strap. Either watch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="colors" class="section-tinted">
+  <div class="section-inner">
+    <h2>Eight colors.</h2>
+    <p class="section-sub">Each strap matched to the Royal Pop colorway it complements. Tap any color to explore.</p>
+
+    <div class="colors-grid">
+      <div class="color-card" onclick="openModal('blanc')">
+        <div class="color-image"><img src="strap-blanc.png" alt="Blanc strap"></div>
+        <div class="color-name">Blanc</div>
+        <div class="color-meta">White</div>
+      </div>
+      <div class="color-card" onclick="openModal('noir')">
+        <div class="color-image"><img src="strap-noir.png" alt="Noir strap"></div>
+        <div class="color-name">Noir</div>
+        <div class="color-meta">Black</div>
+      </div>
+      <div class="color-card" onclick="openModal('verde')">
+        <div class="color-image"><img src="strap-verde.png" alt="Verde strap"></div>
+        <div class="color-name">Verde</div>
+        <div class="color-meta">Green</div>
+      </div>
+      <div class="color-card" onclick="openModal('jaune')">
+        <div class="color-image"><img src="strap-jaune.png" alt="Jaune strap"></div>
+        <div class="color-name">Jaune</div>
+        <div class="color-meta">Cream</div>
+      </div>
+      <div class="color-card" onclick="openModal('lanba')">
+        <div class="color-image"><img src="strap-lanba.png" alt="Lan Ba strap"></div>
+        <div class="color-name">Lan Ba</div>
+        <div class="color-meta">Deep Blue</div>
+      </div>
+      <div class="color-card" onclick="openModal('bleumer')">
+        <div class="color-image"><img src="strap-bleumer.png" alt="Bleu Mer strap"></div>
+        <div class="color-name">Bleu Mer</div>
+        <div class="color-meta">Turquoise</div>
+      </div>
+      <div class="color-card" onclick="openModal('rose')">
+        <div class="color-image"><img src="strap-rose.png" alt="Rose strap"></div>
+        <div class="color-name">Rose</div>
+        <div class="color-meta">Pink</div>
+      </div>
+      <div class="color-card" onclick="openModal('orenji')">
+        <div class="color-image"><img src="strap-orenji.png" alt="Orenji strap"></div>
+        <div class="color-name">Orenji</div>
+        <div class="color-meta">Navy + Orange</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-images">
+      <div class="modal-image-wrapper">
+        <img id="modalStrapImg" src="" alt="Strap">
+        <p class="modal-image-label">The strap</p>
+      </div>
+      <div class="modal-image-wrapper">
+        <img id="modalWatchImg" src="" alt="On the watch">
+        <p class="modal-image-label">On the Royal Pop</p>
+      </div>
+    </div>
+    <div class="modal-info">
+      <h3 id="modalTitle">Noir.</h3>
+      <p id="modalDesc">Matte black silicone. Crafted to complement the Royal Pop Noir colorway.</p>
+      <button class="btn-primary" onclick="reserveColor()">Reserve in this color</button>
+    </div>
+  </div>
+</div>
+
+<section class="section-dark manifesto">
+  <div class="section-inner">
+    <h2>A watch you cannot wear<br><span class="accent">is a watch half-finished.</span></h2>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <h2>FAQs.</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What makes Premium Straps different from other Royal Pop accessories?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Our adapter is engineered in TPU 95A, the same flexible polymer density used by Swiss watchmakers. Every piece is printed and quality-checked locally in Europe, not in an anonymous fulfillment center halfway around the world.</p>
+          <p>We're focused on material density, fit tolerances, and color accuracy. Each product is fully traceable to its production batch.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Will the strap work with all 8 Royal Pop colorways?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Our adapter is designed to fit both Lépine references (crown at 3 o'clock) and Savonnette references (crown at 12 o'clock). Between the two, every Royal Pop colorway is covered.</p>
+          <p>You'll select your preferred color when joining the waitlist, and we'll have all 8 available at launch.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          When will it ship?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Production begins shortly after waitlist closes. Once produced, every order ships within 7 days with tracking included.</p>
+          <p>Waitlist members get priority. Your order ships before public availability.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is installation difficult?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Not at all. The watch head clicks into our adapter the same way it clicks into the original Swatch carrier. No tools, no modifications, no glue. Total swap time is under 30 seconds.</p>
+          <p>Each strap ships with a quick-start card showing the two-step installation.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is this affiliated with Audemars Piguet or Swatch?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>No. Premium Straps is an independent product. We are not affiliated with, endorsed by, or connected to Audemars Piguet, Swatch Ltd., or The Swatch Group. We make accessories that are compatible with the Royal Pop.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What's your return policy?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p>30-day return window from the day you receive your order. If the fit isn't right, the color doesn't match what you expected, or you simply change your mind, send it back for a full refund.</p>
+          <p>Just keep the original packaging. We cover return shipping within Europe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="waitlist" class="waitlist">
+  <div class="waitlist-card">
+    <p class="section-eyebrow">First access.</p>
+    <h2>Join the waitlist.</h2>
+    <p class="section-sub">Be the first to know when we launch. Priority access and exclusive offers for waitlist members.</p>
+
+    <form id="waitlist-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+371 12345678">
+      </div>
+      <div class="form-group">
+        <label for="color">Preferred color</label>
+        <select id="color" name="color" required>
+          <option value="">Choose a color</option>
+          <option value="Blanc">Blanc — White</option>
+          <option value="Noir">Noir — Black</option>
+          <option value="Verde">Verde — Green</option>
+          <option value="Jaune">Jaune — Cream</option>
+          <option value="Lan Ba">Lan Ba — Deep Blue</option>
+          <option value="Bleu Mer">Bleu Mer — Turquoise</option>
+          <option value="Rose">Rose — Pink</option>
+          <option value="Orenji">Orenji — Navy + Orange</option>
+          <option value="Undecided">I'll decide later</option>
+        </select>
+      </div>
+      <button type="submit" id="submit-btn">Reserve my place</button>
+      <p class="form-note">No spam. Launch updates only.</p>
+    </form>
+
+    <div class="success" id="success">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>You're on the list.</h3>
+      <p>We'll be in touch when production begins.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="#colors">Colors</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#waitlist">Waitlist</a>
+      <a href="mailto:hello@premiumstraps.eu">Contact</a>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Premium Straps. Made in Europe.</div>
+      <p class="disclaimer">Premium Straps is an independent product. Not affiliated with, endorsed by, or connected to Audemars Piguet, Swatch Ltd., or The Swatch Group. "Royal Pop" and related marks belong to their respective owners and are used here descriptively only.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // PRODUCT MODAL DATA
+  const colorData = {
+    blanc:   { name: 'Blanc.',    desc: 'Soft, off-white silicone with a powdery matte finish. Designed to complement the white Royal Pop colorway.' },
+    noir:    { name: 'Noir.',     desc: 'Deep matte black silicone. The most versatile colorway, pairing with every Royal Pop variant.' },
+    verde:   { name: 'Verde.',    desc: 'Emerald green silicone. A bold complement to the Verde Royal Pop, or a striking contrast on other models.' },
+    jaune:   { name: 'Jaune.',    desc: 'Warm cream-yellow silicone. Subtle, sophisticated, and pairs beautifully with the Lan Ba Lépine.' },
+    lanba:   { name: 'Lan Ba.',   desc: 'Deep navy silicone, named after the iconic Lan Ba Savonnette. Marine blue with quiet authority.' },
+    bleumer: { name: 'Bleu Mer.', desc: 'Aqua turquoise silicone with a sea-glass softness. Pairs naturally with the turquoise Royal Pop colorway.' },
+    rose:    { name: 'Rose.',     desc: 'Powdery pink silicone, restrained and refined. Pairs with the Rose Royal Pop or adds warmth to neutrals.' },
+    orenji:  { name: 'Orenji.',   desc: 'Deep navy with the unmistakable orange basketball-stitch detail. The collector\'s choice.' }
+  };
+
+  function openModal(color) {
+    const data = colorData[color];
+    if (!data) return;
+    document.getElementById('modalTitle').textContent = data.name;
+    document.getElementById('modalDesc').textContent = data.desc;
+    document.getElementById('modalStrapImg').src = `strap-${color}.png`;
+    document.getElementById('modalWatchImg').src = `watch-${color}.png`;
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    window.currentColor = color;
+  }
+
+  function closeModal(event) {
+    if (event && event.target.id !== 'productModal' && event.type !== undefined) {
+      // only close on overlay click or explicit call
+      if (event.target.id !== 'productModal') return;
+    }
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function reserveColor() {
+    const color = window.currentColor;
+    closeModal();
+    // scroll to waitlist
+    document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+    // pre-select the color in the dropdown after a small delay
+    setTimeout(() => {
+      const select = document.getElementById('color');
+      if (select) {
+        const colorMap = {
+          blanc: 'Blanc', noir: 'Noir', verde: 'Verde', jaune: 'Jaune',
+          lanba: 'Lan Ba', bleumer: 'Bleu Mer', rose: 'Rose', orenji: 'Orenji'
+        };
+        const targetText = colorMap[color];
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(targetText)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }, 600);
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all other items (single-open accordion)
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      if (isOpen) {
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0uyid0dGxnjni-2epRHS7Ni0HzI5Ar0TDfdW7htQ0d4JsME_upvIFqfhDU8-5GgOmwA/exec';
+
+  const form = document.getElementById('waitlist-form');
+  const success = document.getElementById('success');
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Hide placeholder labels once images load
+  document.querySelectorAll('.color-image').forEach(el => {
+    const bg = el.style.backgroundImage;
+    if (bg && bg.includes('url')) {
+      const img = new Image();
+      const url = bg.replace(/url\(['"]?([^'"]+)['"]?\)/, '$1');
+      img.onload = () => {
+        const label = el.querySelector('.placeholder-label');
+        if (label) label.style.display = 'none';
+      };
+      img.src = url;
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    const data = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      color: document.getElementById('color').value
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      // Note: with mode 'no-cors' we cannot read the response,
+      // but the request still reaches Google Apps Script successfully
+      form.style.display = 'none';
+      success.classList.add('show');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Reserve my place';
+      alert('Something went wrong. Please email hello@premiumstraps.eu directly.');
+    }
+  });
+</script>
+
+</body>
+</html>
