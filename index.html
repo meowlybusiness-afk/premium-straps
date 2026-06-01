@@ -312,6 +312,7 @@
   .cm-buy { display: flex; align-items: center; gap: 26px; margin-bottom: 14px; flex-wrap: wrap; }
   .cm-price { font-size: 32px; font-weight: 600; color: var(--text-on-dark); }
   .cm-price .cm-cur { font-weight: 500; }
+  .cm-price .cm-was { color: rgba(245,245,247,0.5); text-decoration: line-through; font-weight: 400; font-size: 24px; margin-right: 12px; }
   .btn-buy {
     display: inline-block; background: var(--blue); color: #fff;
     font-size: 18px; font-weight: 500; padding: 14px 44px;
@@ -1230,7 +1231,7 @@
         <li>Fits both Lépine &amp; Savonnette crowns</li>
       </ul>
       <div class="cm-buy">
-        <div class="cm-price"><span class="cm-cur">€</span><span id="cm-price-val">49</span></div>
+        <div class="cm-price"><span class="cm-was">€80</span><span class="cm-cur">€</span><span id="cm-price-val">45</span></div>
         <a id="buy-now-btn" class="btn-buy">Buy now</a>
       </div>
       <p class="cm-note">Pay by card or PayPal · Ships fast from Europe</p>
@@ -1579,7 +1580,7 @@
         alert('Payment link not set yet. Open the code and paste your PayPal link into PAY_URL.');
         return;
       }
-      if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: 49, currency: 'EUR', items: ['Royal Pop Car Mount'] });
+      if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: 45, currency: 'EUR', items: ['Royal Pop Car Mount'] });
       window.location.href = PAY_URL;
     });
   }
