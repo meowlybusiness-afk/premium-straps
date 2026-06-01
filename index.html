@@ -1624,7 +1624,7 @@
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
     const mbtn = document.getElementById('modalBuyBtn');
-    if (mbtn) mbtn.textContent = strapLink(color) ? ('Buy · €' + STRAP_PRICE) : 'Notify when available';
+    if (mbtn) mbtn.textContent = 'Buy now';
   }
 
   // ===== STRAP STORE =====
@@ -1670,20 +1670,21 @@
         fitEl.insertAdjacentElement('afterend', p);
       }
       if (actEl) {
-        const link = strapLink(color);
-        if (link) {
-          const a = document.createElement('a');
-          a.className = 'strap-buy-btn';
-          a.href = link;
-          a.textContent = 'Buy';
-          a.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); goToStrap(color); });
-          actEl.appendChild(a);
-        } else {
-          const s = document.createElement('span');
-          s.className = 'strap-sold';
-          s.textContent = 'Sold out';
-          actEl.appendChild(s);
-        }
+        const a = document.createElement('a');
+        a.className = 'strap-buy-btn';
+        a.href = strapLink(color) || '#';
+        a.textContent = 'Buy now';
+        a.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (strapLink(color)) {
+            goToStrap(color);
+          } else {
+            const nm = card.querySelector('.color-name');
+            alert('PayPal link not set yet for ' + (nm ? nm.textContent : color) + '. Paste it into the STRAPS list in the code.');
+          }
+        });
+        actEl.appendChild(a);
       }
       // Desktop: click opens modal. Touch: first tap flips preview, second opens.
       card.addEventListener('click', (e) => {
@@ -1710,25 +1711,7 @@
   function modalBuy() {
     const color = window.currentColor;
     if (strapLink(color)) { goToStrap(color); return; }
-    // Out of stock → fall back to the waitlist, pre-selecting the colour
-    closeModal();
-    document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-      const select = document.getElementById('color');
-      if (select) {
-        const colorMap = {
-          blanc: 'Blanc', noir: 'Noir', verde: 'Verde', jaune: 'Jaune',
-          lanba: 'Lan Ba', bleumer: 'Bleu Mer', rose: 'Rose', orenji: 'Orenji'
-        };
-        const targetText = colorMap[color];
-        for (let i = 0; i < select.options.length; i++) {
-          if (select.options[i].text.includes(targetText)) {
-            select.selectedIndex = i;
-            break;
-          }
-        }
-      }
-    }, 600);
+    alert('PayPal link not set yet for this colour. Paste it into the STRAPS list in the code.');
   }
 
   // Close modal on Escape key
