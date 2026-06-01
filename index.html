@@ -462,6 +462,51 @@
     pointer-events: none;
   }
 
+  /* Strap store: fit line + buy / sold-out */
+  .strap-fit {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 2px 0 10px;
+    letter-spacing: 0.01em;
+  }
+  .strap-price {
+    text-align: center;
+    font-size: 15px;
+    margin: 0 0 10px;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .strap-price .strap-was { color: var(--text-muted); text-decoration: line-through; margin-right: 8px; font-weight: 400; }
+  .strap-price .strap-now { font-weight: 600; }
+  .strap-action { text-align: center; }
+  .strap-buy-btn {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 9px 26px;
+    border-radius: 980px;
+    background: var(--blue);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .strap-buy-btn:hover { background: var(--blue-hover); transform: translateY(-1px); }
+  .strap-sold {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 8px 18px;
+    border-radius: 980px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
   /* MODAL */
   .modal-overlay {
     display: none;
@@ -1247,77 +1292,77 @@
     <p class="section-sub">Each strap matched to the Royal Pop colorway it complements. Tap any color to explore.</p>
 
     <div class="colors-grid">
-      <div class="color-card" onclick="openModal('blanc')">
-        <div class="color-image">
-          <img class="img-strap" src="images/strap-blanc.png" alt="Blanc strap">
-          <img class="img-watch" src="images/watch-blanc.png" alt="Blanc Royal Pop">
-        </div>
-        <div class="color-name">Blanc</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">White</div>
-      </div>
-      <div class="color-card" onclick="openModal('noir')">
+      <div class="color-card" data-color="noir" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/watch-noir.png" alt="Noir strap">
           <img class="img-watch" src="images/strap-noir.png" alt="Noir Royal Pop">
         </div>
         <div class="color-name">Noir</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Black</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('verde')">
+      <div class="color-card" data-color="blanc" data-crown="12">
+        <div class="color-image">
+          <img class="img-strap" src="images/strap-blanc.png" alt="Blanc strap">
+          <img class="img-watch" src="images/watch-blanc.png" alt="Blanc Royal Pop">
+        </div>
+        <div class="color-name">Blanc</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
+      </div>
+      <div class="color-card" data-color="verde" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/strap-verde.png" alt="Verde strap">
           <img class="img-watch" src="images/watch-verde.png" alt="Verde Royal Pop">
         </div>
         <div class="color-name">Verde</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Green</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('jaune')">
+      <div class="color-card" data-color="jaune" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/strap-jaune.png" alt="Jaune strap">
           <img class="img-watch" src="images/watch-jaune.png" alt="Jaune Royal Pop">
         </div>
         <div class="color-name">Jaune</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Cream</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('lanba')">
+      <div class="color-card" data-color="lanba" data-crown="3">
         <div class="color-image">
           <img class="img-strap" src="images/strap-lanba.png" alt="Lan Ba strap">
           <img class="img-watch" src="images/watch-lanba.png" alt="Lan Ba Royal Pop">
         </div>
         <div class="color-name">Lan Ba</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Deep Blue</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('bleumer')">
+      <div class="color-card" data-color="bleumer" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/strap-bleumer.png" alt="Bleu Mer strap">
           <img class="img-watch" src="images/watch-bleumer.png" alt="Bleu Mer Royal Pop">
         </div>
         <div class="color-name">Bleu Mer</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Turquoise</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('rose')">
+      <div class="color-card" data-color="rose" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/strap-rose.png" alt="Rose strap">
           <img class="img-watch" src="images/watch-rose.png" alt="Rose Royal Pop">
         </div>
         <div class="color-name">Rose</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Pink</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" onclick="openModal('orenji')">
+      <div class="color-card" data-color="orenji" data-crown="12">
         <div class="color-image">
           <img class="img-strap" src="images/strap-orenji.png" alt="Orenji strap">
           <img class="img-watch" src="images/watch-orenji.png" alt="Orenji Royal Pop">
         </div>
         <div class="color-name">Orenji</div>
-        <button type="button" class="sold-out-btn" disabled>Sold out</button>
-        <div class="color-meta">Navy + Orange</div>
+        <div class="strap-fit" data-fit></div>
+        <div class="strap-action" data-action></div>
       </div>
     </div>
   </div>
@@ -1340,7 +1385,7 @@
     <div class="modal-info">
       <h3 id="modalTitle">Noir.</h3>
       <p id="modalDesc">Matte black silicone. Crafted to complement the Royal Pop Noir colorway.</p>
-      <button class="btn-primary" onclick="reserveColor()">Reserve in this color</button>
+      <button class="btn-primary" id="modalBuyBtn" onclick="modalBuy()">Buy this color</button>
     </div>
   </div>
 </div>
@@ -1578,30 +1623,77 @@
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
+    const mbtn = document.getElementById('modalBuyBtn');
+    if (mbtn) mbtn.textContent = strapLink(color) ? ('Buy · €' + STRAP_PRICE) : 'Notify when available';
   }
 
-  // MOBILE: tap-once flips strap → watch preview, tap-again opens modal
-  // Desktop: hover handles flip (CSS); click opens modal immediately
-  (function setupMobileFlip() {
+  // ===== STRAP STORE =====
+  // Paste each color's PayPal link below. Empty "" = card shows "Sold out".
+  const STRAP_PRICE = 50;       // sale price (EUR)
+  const STRAP_PRICE_WAS = 95;   // original price, shown struck-through (set 0 to hide)
+  const STRAPS = {
+    noir:    { link: "" },  // Black/White        · 12 o'clock
+    blanc:   { link: "" },  // White              · 12 o'clock
+    orenji:  { link: "" },  // Navy/Orange        · 12 o'clock
+    jaune:   { link: "" },  // Yellow/Sky-blue    · 12 o'clock
+    lanba:   { link: "" },  // Dark-blue/Sky-blue · 3 o'clock
+    verde:   { link: "" },  // Green              · 12 o'clock
+    rose:    { link: "" },  // Sand-pink/Red      · 12 o'clock
+    bleumer: { link: "" },  // turquoise
+  };
+
+  function strapLink(color) {
+    const c = STRAPS[color];
+    return (c && c.link && !c.link.includes('REPLACE')) ? c.link : '';
+  }
+
+  function goToStrap(color) {
+    const link = strapLink(color);
+    if (!link) return;
+    if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: STRAP_PRICE, currency: 'EUR', items: ['Strap ' + color] });
+    window.location.href = link;
+  }
+
+  // Build each color card: crown-fit line + Buy/Sold-out + tap behaviour.
+  (function initStrapCards() {
     const isTouch = window.matchMedia('(hover: none)').matches;
-    if (!isTouch) return;
     document.querySelectorAll('.color-card').forEach(card => {
-      // remove inline onclick and re-bind with tap-once-flip logic
-      const onclickAttr = card.getAttribute('onclick') || '';
-      const match = onclickAttr.match(/openModal\('(\w+)'\)/);
-      if (!match) return;
-      const color = match[1];
-      card.removeAttribute('onclick');
+      const color = card.getAttribute('data-color');
+      const crown = card.getAttribute('data-crown');
+      const fitEl = card.querySelector('[data-fit]');
+      const actEl = card.querySelector('[data-action]');
+      if (fitEl && crown) fitEl.textContent = "Fits " + crown + " o'clock crown";
+      if (fitEl) {
+        const p = document.createElement('div');
+        p.className = 'strap-price';
+        p.innerHTML = (STRAP_PRICE_WAS ? '<span class="strap-was">€' + STRAP_PRICE_WAS + '</span>' : '') + '<span class="strap-now">€' + STRAP_PRICE + '</span>';
+        fitEl.insertAdjacentElement('afterend', p);
+      }
+      if (actEl) {
+        const link = strapLink(color);
+        if (link) {
+          const a = document.createElement('a');
+          a.className = 'strap-buy-btn';
+          a.href = link;
+          a.textContent = 'Buy';
+          a.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); goToStrap(color); });
+          actEl.appendChild(a);
+        } else {
+          const s = document.createElement('span');
+          s.className = 'strap-sold';
+          s.textContent = 'Sold out';
+          actEl.appendChild(s);
+        }
+      }
+      // Desktop: click opens modal. Touch: first tap flips preview, second opens.
       card.addEventListener('click', (e) => {
-        if (!card.classList.contains('flipped')) {
-          // first tap: flip preview
+        if (e.target.closest('.strap-buy-btn')) return;
+        if (isTouch && !card.classList.contains('flipped')) {
           document.querySelectorAll('.color-card.flipped').forEach(c => c.classList.remove('flipped'));
           card.classList.add('flipped');
-          e.preventDefault();
-        } else {
-          // second tap: open modal
-          openModal(color);
+          return;
         }
+        openModal(color);
       });
     });
   })();
@@ -1615,12 +1707,12 @@
     document.body.style.overflow = '';
   }
 
-  function reserveColor() {
+  function modalBuy() {
     const color = window.currentColor;
+    if (strapLink(color)) { goToStrap(color); return; }
+    // Out of stock → fall back to the waitlist, pre-selecting the colour
     closeModal();
-    // scroll to waitlist
     document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
-    // pre-select the color in the dropdown after a small delay
     setTimeout(() => {
       const select = document.getElementById('color');
       if (select) {
