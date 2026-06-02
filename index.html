@@ -639,6 +639,53 @@
 
   .manifesto h2 .accent { color: var(--text-muted); }
 
+  /* ===== FAQ ===== */
+  .faq { background: var(--bg); }
+  .faq-inner { max-width: 720px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 24px; }
+  .faq-list { border-top: 1px solid var(--border); }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+    padding: 22px 4px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .faq-icon {
+    flex: 0 0 auto;
+    width: 12px; height: 12px;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    margin-top: -4px;
+  }
+  .faq-item.open .faq-icon { transform: rotate(-135deg); margin-top: 4px; }
+  .faq-answer {
+    display: none;
+    padding: 0 4px 22px;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-answer p { margin-bottom: 12px; }
+  .faq-answer p:last-child { margin-bottom: 0; }
+
   /* ===== OFFER BADGE ===== */
   .promo-badge {
     display: inline-block;
@@ -700,6 +747,13 @@
   .cart-success-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: #34c759; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
   .cart-success h4 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
   .cart-success p { color: var(--text-muted); }
+  .cart-success-order { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; font-variant-numeric: tabular-nums; word-break: break-all; }
+  .cart-success .next-steps { text-align: left; max-width: 320px; margin: 14px auto 18px; padding-left: 20px; color: var(--text); font-size: 14px; line-height: 1.6; }
+  .cart-success .next-steps li { margin-bottom: 8px; }
+  .cart-success-help { font-size: 13px; color: var(--text-muted); margin: 10px 0 18px; }
+  .cart-success-help a { color: var(--blue); text-decoration: none; }
+  .cart-continue { width: 100%; background: var(--blue); color: #fff; border: none; padding: 13px; border-radius: 980px; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
+  .cart-continue:hover { background: var(--blue-hover); }
   @media (max-width: 480px) { .cart-panel { max-width: 100%; padding: 28px 20px; } .cart-fab { bottom: 16px; right: 16px; } .promo-bar { font-size: 12px; height: 34px; } nav { top: 34px; } }
   html { scroll-padding-top: 110px; }
 
@@ -1071,7 +1125,7 @@
       <a href="#colors">Colors</a>
       <a href="#specs">Specs</a>
       <a href="#faq">FAQ</a>
-      <a href="mailto:hello@premiumstraps.eu">Contact</a>
+      <a href="mailto:meowlybusiness@gmail.com">Contact</a>
     </div>
     <div class="footer-bottom">
       <div>© 2026 Premium Straps. Made in Europe.</div>
@@ -1275,6 +1329,13 @@
     renderPayPalButton();
   }
 
+  function closeThankYou() {
+    const succ = document.getElementById('cart-success'); if (succ) succ.style.display = 'none';
+    const body = document.getElementById('cart-body'); if (body) body.style.display = 'block';
+    const o = document.getElementById('cart-overlay'); if (o) o.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
   let _cartOpenedAt = 0;
   function openCart() {
     const o = document.getElementById('cart-overlay');
@@ -1348,14 +1409,18 @@
           });
         },
         onApprove: function (data, actions) {
-          return actions.order.capture().then(function () {
+          return actions.order.capture().then(function (details) {
             if (typeof gtag === 'function') gtag('event', 'purchase', { value: cartTotals().total, currency: 'EUR' });
             cart = [];
             renderCart();
             const body = document.getElementById('cart-body');
             const succ = document.getElementById('cart-success');
+            const ordEl = document.getElementById('order-id');
+            if (ordEl && details && details.id) ordEl.textContent = 'Order ' + details.id;
             if (body) body.style.display = 'none';
             if (succ) succ.style.display = 'block';
+            openCart(); // ensure the thank-you is visible (also covers a redirect return)
+            const panel = document.querySelector('.cart-panel'); if (panel) panel.scrollTop = 0;
           });
         },
         onCancel: function () {
@@ -1473,8 +1538,16 @@
       <div class="cart-success-icon">
         <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h4>Order placed</h4>
-      <p>Thank you — check your email for confirmation.</p>
+      <h4>Thank you for your purchase!</h4>
+      <p class="cart-success-order" id="order-id"></p>
+      <p>Your order is confirmed. Here's what happens next:</p>
+      <ol class="next-steps">
+        <li>You'll receive a confirmation email with your receipt.</li>
+        <li>We pack and dispatch from Europe within 1–2 business days.</li>
+        <li>A tracking link is sent to you as soon as it ships.</li>
+      </ol>
+      <p class="cart-success-help">Questions? Email <a href="mailto:meowlybusiness@gmail.com">meowlybusiness@gmail.com</a></p>
+      <button type="button" class="cart-continue" onclick="closeThankYou()">Continue shopping</button>
     </div>
   </div>
 </div>
