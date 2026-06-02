@@ -1131,6 +1131,8 @@
     transition: transform 0.2s, background 0.2s;
   }
   .cart-fab:hover { background: var(--blue-hover); transform: translateY(-2px); }
+  .cart-fab-bump { animation: fabBump 0.42s ease; }
+  @keyframes fabBump { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
   .cart-count { background: #fff; color: var(--blue); border-radius: 980px; min-width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; padding: 0 6px; }
 
   .cart-overlay {
@@ -1292,7 +1294,7 @@
         <li>Fits both Lépine &amp; Savonnette crowns</li>
       </ul>
       <div class="cm-buy">
-        <div class="cm-price"><span class="cm-was">€80</span><span class="cm-cur">€</span><span id="cm-price-val">45</span></div>
+        <div class="cm-price"><span class="cm-was">€100</span><span class="cm-cur">€</span><span id="cm-price-val">60</span></div>
         <a id="buy-now-btn" class="btn-buy">Buy now</a>
       </div>
       <p class="cm-note">Pay by card or PayPal · Ships fast from Europe</p>
@@ -1642,7 +1644,7 @@
         alert('Payment link not set yet. Open the code and paste your PayPal link into PAY_URL.');
         return;
       }
-      if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: 45, currency: 'EUR', items: ['Royal Pop Car Mount'] });
+      if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: 60, currency: 'EUR', items: ['Royal Pop Car Mount'] });
       window.location.href = PAY_URL;
     });
   }
@@ -1691,7 +1693,8 @@
   }
 
   // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
-  const STRAP_PRICE = 95;        // EUR per strap
+  const STRAP_PRICE = 95;        // EUR per strap (what they pay)
+  const STRAP_PRICE_WAS = 149;   // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
     noir:    { name: 'Noir',     crown: '12' },
     blanc:   { name: 'Blanc',    crown: '12' },
@@ -1717,11 +1720,44 @@
     return { qty, free, gross, discount, total: gross - discount };
   }
 
-  function addToCart(color) {
+  function addToCart(color, sourceEl) {
     if (!STRAP_META[color]) return;
     cart.push(color);
-    renderCart();
-    openCart();
+    renderCart();          // updates count + reveals the bag button
+    flyToCart(sourceEl);   // animate into the bag — no drawer open
+  }
+  function bumpFab() {
+    const fab = document.getElementById('cart-fab');
+    if (!fab) return;
+    fab.classList.add('cart-fab-bump');
+    setTimeout(() => fab.classList.remove('cart-fab-bump'), 420);
+  }
+  function flyToCart(sourceEl) {
+    const fab = document.getElementById('cart-fab');
+    const img = sourceEl ? (sourceEl.querySelector('.img-strap') || sourceEl.querySelector('img') || sourceEl) : null;
+    if (!fab || !img) { bumpFab(); return; }
+    const s = img.getBoundingClientRect();
+    const f = fab.getBoundingClientRect();
+    const clone = img.cloneNode(true);
+    clone.style.position = 'fixed';
+    clone.style.left = s.left + 'px';
+    clone.style.top = s.top + 'px';
+    clone.style.width = s.width + 'px';
+    clone.style.height = s.height + 'px';
+    clone.style.objectFit = 'contain';
+    clone.style.borderRadius = '16px';
+    clone.style.zIndex = '2000';
+    clone.style.pointerEvents = 'none';
+    clone.style.transition = 'all 0.7s cubic-bezier(0.5, -0.1, 0.3, 1)';
+    document.body.appendChild(clone);
+    clone.getBoundingClientRect(); // force reflow
+    clone.style.left = (f.left + f.width / 2 - 22) + 'px';
+    clone.style.top = (f.top + f.height / 2 - 22) + 'px';
+    clone.style.width = '44px';
+    clone.style.height = '44px';
+    clone.style.opacity = '0.25';
+    clone.style.transform = 'rotate(18deg)';
+    setTimeout(() => { clone.remove(); bumpFab(); }, 700);
   }
   function removeOne(color) {
     const i = cart.indexOf(color);
@@ -1850,7 +1886,7 @@
       if (fitEl) {
         const p = document.createElement('div');
         p.className = 'strap-price';
-        p.innerHTML = '<span class="strap-now">€' + STRAP_PRICE + '</span>';
+        p.innerHTML = (STRAP_PRICE_WAS ? '<span class="strap-was">€' + STRAP_PRICE_WAS + '</span>' : '') + '<span class="strap-now">€' + STRAP_PRICE + '</span>';
         fitEl.insertAdjacentElement('afterend', p);
       }
       if (actEl) {
@@ -1858,7 +1894,7 @@
         a.type = 'button';
         a.className = 'strap-buy-btn';
         a.textContent = 'Add to cart';
-        a.addEventListener('click', (e) => { e.stopPropagation(); addToCart(color); });
+        a.addEventListener('click', (e) => { e.stopPropagation(); addToCart(color, card.querySelector('.color-image')); });
         actEl.appendChild(a);
       }
       card.addEventListener('click', (e) => {
@@ -1884,7 +1920,7 @@
   }
 
   function modalBuy() {
-    if (window.currentColor) { addToCart(window.currentColor); closeModal(); }
+    if (window.currentColor) { addToCart(window.currentColor, document.getElementById('modalStrapImg')); closeModal(); }
   }
 
   // Close modal on Escape key
