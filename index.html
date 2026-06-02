@@ -1107,6 +1107,67 @@
     100% { transform: translate(var(--dx), var(--dy)) scale(1); opacity: 0; }
   }
 
+  /* ===== OFFER BADGE ===== */
+  .promo-badge {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 7px 16px;
+    border-radius: 980px;
+    margin-bottom: 16px;
+  }
+
+  /* ===== CART ===== */
+  .cart-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 900;
+    display: none; align-items: center; gap: 8px;
+    background: var(--blue); color: #fff; border: none;
+    padding: 12px 18px; border-radius: 980px; cursor: pointer;
+    font-family: inherit; font-size: 15px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .cart-fab:hover { background: var(--blue-hover); transform: translateY(-2px); }
+  .cart-count { background: #fff; color: var(--blue); border-radius: 980px; min-width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; padding: 0 6px; }
+
+  .cart-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1100;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    justify-content: flex-end;
+  }
+  .cart-overlay.active { display: flex; }
+  .cart-panel {
+    background: var(--bg); width: 100%; max-width: 420px; height: 100%;
+    padding: 32px 26px; overflow-y: auto; position: relative;
+    box-shadow: -20px 0 60px rgba(0,0,0,0.2);
+  }
+  .cart-close { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 50%; border: none; background: var(--bg-alt); font-size: 22px; color: var(--text); cursor: pointer; }
+  .cart-title { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .cart-promo { font-size: 14px; color: var(--blue); font-weight: 500; margin-bottom: 22px; }
+  .cart-row { display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .cart-row-name em { color: var(--text-muted); font-style: normal; font-size: 13px; }
+  .cart-row-qty { color: var(--text-muted); }
+  .cart-row-price { font-weight: 600; }
+  .cart-row-rm { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; font-size: 16px; line-height: 1; }
+  .cart-row-rm:hover { background: var(--bg-alt); }
+  .cart-empty { color: var(--text-muted); padding: 28px 0; text-align: center; }
+  .cart-summary { margin: 16px 0 22px; }
+  .cart-line { display: flex; justify-content: space-between; font-size: 15px; padding: 6px 0; }
+  .cart-free { color: #30a14e; }
+  .cart-total { font-size: 20px; font-weight: 700; border-top: 1px solid var(--border); margin-top: 8px; padding-top: 14px; }
+  .cart-hint { font-size: 13px; color: var(--text-muted); margin-top: 10px; text-align: center; }
+  .paypal-cart-button { margin-top: 10px; min-height: 46px; }
+  .cart-note { font-size: 13px; color: var(--text-muted); text-align: center; padding: 12px; background: var(--bg-alt); border-radius: 12px; }
+  .cart-foot { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 14px; }
+  .cart-success { text-align: center; padding: 40px 0; }
+  .cart-success-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: #34c759; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .cart-success h4 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+  .cart-success p { color: var(--text-muted); }
+  @media (max-width: 480px) { .cart-panel { max-width: 100%; padding: 28px 20px; } .cart-fab { bottom: 16px; right: 16px; } }
+
   /* ============ MOBILE OPTIMIZATIONS ============ */
 
   @media (max-width: 768px) {
@@ -1212,7 +1273,7 @@
     <h1>Premium Straps.</h1>
     <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
     <div class="hero-actions">
-      <a href="#waitlist" class="btn-primary">Join waitlist</a>
+      <a href="#colors" class="btn-primary">Buy now</a>
       <a href="#colors" class="btn-link">See colors</a>
     </div>
   </div>
@@ -1289,8 +1350,9 @@
 
 <section id="colors" class="section-tinted">
   <div class="section-inner">
+    <div class="promo-badge">Buy 2, get 1 free</div>
     <h2>Eight colors.</h2>
-    <p class="section-sub">Each strap matched to the Royal Pop colorway it complements. Tap any color to explore.</p>
+    <p class="section-sub">€95 each — every 3rd strap is free. Tap a colour to add it to your bag.</p>
 
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
@@ -1625,37 +1687,158 @@
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
     const mbtn = document.getElementById('modalBuyBtn');
-    if (mbtn) mbtn.textContent = 'Buy now';
+    if (mbtn) mbtn.textContent = 'Add to cart';
   }
 
-  // ===== STRAP STORE =====
-  // Paste each color's PayPal link below. Empty "" = card shows "Sold out".
-  const STRAP_PRICE = 50;       // sale price (EUR)
-  const STRAP_PRICE_WAS = 95;   // original price, shown struck-through (set 0 to hide)
-  const STRAPS = {
-    noir:    { link: "https://www.paypal.com/ncp/payment/2F2865S6RLKS4" },  // Black/White        · 12 o'clock
-    blanc:   { link: "https://www.paypal.com/ncp/payment/QVDJ934S7SNHN" },  // White              · 12 o'clock
-    orenji:  { link: "https://www.paypal.com/ncp/payment/45Z29K83DEHNQ" },  // Navy/Orange        · 12 o'clock
-    jaune:   { link: "https://www.paypal.com/ncp/payment/665LT7GPR2ZTG" },  // Yellow/Sky-blue    · 12 o'clock
-    lanba:   { link: "https://www.paypal.com/ncp/payment/D7RQJ9GVGU2M8" },  // Dark-blue/Sky-blue · 3 o'clock
-    verde:   { link: "https://www.paypal.com/ncp/payment/TUP9KCUEL4GNA" },  // Green              · 12 o'clock
-    rose:    { link: "https://www.paypal.com/ncp/payment/8K4Q6H4J4C5AL" },  // Sand-pink/Red      · 12 o'clock
-    bleumer: { link: "https://www.paypal.com/ncp/payment/G9N9MKUHMTLPW" },  // turquoise (confirm: turquoise or pink/yellow?)
+  // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
+  const STRAP_PRICE = 95;        // EUR per strap
+  const STRAP_META = {
+    noir:    { name: 'Noir',     crown: '12' },
+    blanc:   { name: 'Blanc',    crown: '12' },
+    verde:   { name: 'Verde',    crown: '12' },
+    jaune:   { name: 'Jaune',    crown: '12' },
+    lanba:   { name: 'Lan Ba',   crown: '3'  },
+    bleumer: { name: 'Bleu Mer', crown: '12' },
+    rose:    { name: 'Rose',     crown: '12' },
+    orenji:  { name: 'Orenji',   crown: '12' },
   };
 
-  function strapLink(color) {
-    const c = STRAPS[color];
-    return (c && c.link && !c.link.includes('REPLACE')) ? c.link : '';
+  /* ↓↓↓ PASTE YOUR PAYPAL CLIENT ID HERE ↓↓↓
+     developer.paypal.com → Apps & Credentials → (Live) → create app → copy Client ID  */
+  const PAYPAL_CLIENT_ID = "AVyCnKa-Ton9RNz408HlG43ROfuHKkkxPYFR_sFkGTdt0pRHPvJIgRgKiS0Ct9yC5VSkT6RN2Bo_q_i2";
+
+  let cart = [];  // one entry per strap (colour key)
+
+  function cartTotals() {
+    const qty = cart.length;
+    const free = Math.floor(qty / 3);      // buy 2, get 1 free → every 3rd strap free
+    const gross = qty * STRAP_PRICE;
+    const discount = free * STRAP_PRICE;   // all straps same price
+    return { qty, free, gross, discount, total: gross - discount };
   }
 
-  function goToStrap(color) {
-    const link = strapLink(color);
-    if (!link) return;
-    if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: STRAP_PRICE, currency: 'EUR', items: ['Strap ' + color] });
-    window.location.href = link;
+  function addToCart(color) {
+    if (!STRAP_META[color]) return;
+    cart.push(color);
+    renderCart();
+    openCart();
+  }
+  function removeOne(color) {
+    const i = cart.indexOf(color);
+    if (i > -1) cart.splice(i, 1);
+    renderCart();
   }
 
-  // Build each color card: crown-fit line + Buy/Sold-out + tap behaviour.
+  function renderCart() {
+    const t = cartTotals();
+    const fab = document.getElementById('cart-fab');
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = t.qty;
+    if (fab) fab.style.display = t.qty ? 'flex' : 'none';
+
+    const itemsEl = document.getElementById('cart-items');
+    const emptyEl = document.getElementById('cart-empty');
+    const sumEl = document.getElementById('cart-summary');
+    if (!itemsEl) return;
+
+    const counts = {};
+    cart.forEach(c => counts[c] = (counts[c] || 0) + 1);
+    itemsEl.innerHTML = '';
+    Object.keys(counts).forEach(c => {
+      const row = document.createElement('div');
+      row.className = 'cart-row';
+      row.innerHTML =
+        '<span class="cart-row-name">' + STRAP_META[c].name + " <em>(" + STRAP_META[c].crown + " o'clock)</em></span>" +
+        '<span class="cart-row-qty">×' + counts[c] + '</span>' +
+        '<span class="cart-row-price">€' + (counts[c] * STRAP_PRICE) + '</span>' +
+        '<button type="button" class="cart-row-rm" data-rm="' + c + '" aria-label="Remove one">&minus;</button>';
+      itemsEl.appendChild(row);
+    });
+    itemsEl.querySelectorAll('[data-rm]').forEach(b => b.addEventListener('click', () => removeOne(b.getAttribute('data-rm'))));
+    if (emptyEl) emptyEl.style.display = t.qty ? 'none' : 'block';
+
+    if (sumEl) {
+      const mod = t.qty % 3;
+      const need = mod === 0 ? 0 : 3 - mod;
+      sumEl.innerHTML = t.qty ? (
+        (t.free ? '<div class="cart-line cart-free"><span>Free straps (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
+        '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
+        (need ? '<div class="cart-hint">Add ' + need + ' more for a free strap</div>' : '')
+      ) : '';
+    }
+    renderPayPalButton();
+  }
+
+  function openCart() { const o = document.getElementById('cart-overlay'); if (o) { o.classList.add('active'); document.body.style.overflow = 'hidden'; } }
+  function closeCart(e) { if (e && e.target && e.target.id !== 'cart-overlay') return; const o = document.getElementById('cart-overlay'); if (o) { o.classList.remove('active'); document.body.style.overflow = ''; } }
+
+  // Load the PayPal SDK once, only when a real Client ID is present.
+  let _ppLoad;
+  function loadPayPalSdk(cb) {
+    if (window.paypal) { cb(); return; }
+    if (PAYPAL_CLIENT_ID.indexOf('PASTE') !== -1) return;
+    if (!_ppLoad) {
+      _ppLoad = new Promise(res => {
+        const s = document.createElement('script');
+        s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=EUR&intent=capture';
+        s.onload = res;
+        document.head.appendChild(s);
+      });
+    }
+    _ppLoad.then(cb);
+  }
+
+  function renderPayPalButton() {
+    const c = document.getElementById('paypal-cart-button');
+    if (!c) return;
+    c.innerHTML = '';
+    if (cartTotals().qty === 0) return;
+    if (PAYPAL_CLIENT_ID.indexOf('PASTE') !== -1) {
+      c.innerHTML = '<p class="cart-note">Checkout goes live once your PayPal Client ID is added in the code.</p>';
+      return;
+    }
+    loadPayPalSdk(function () {
+      paypal.Buttons({
+        style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'pay' },
+        createOrder: function (data, actions) {
+          const tt = cartTotals();
+          const counts = {};
+          cart.forEach(x => counts[x] = (counts[x] || 0) + 1);
+          const items = Object.keys(counts).map(x => ({
+            name: 'Royal Pop Strap — ' + STRAP_META[x].name + " (" + STRAP_META[x].crown + " o'clock)",
+            quantity: String(counts[x]),
+            unit_amount: { currency_code: 'EUR', value: STRAP_PRICE.toFixed(2) }
+          }));
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                currency_code: 'EUR',
+                value: tt.total.toFixed(2),
+                breakdown: {
+                  item_total: { currency_code: 'EUR', value: tt.gross.toFixed(2) },
+                  discount: { currency_code: 'EUR', value: tt.discount.toFixed(2) }
+                }
+              },
+              items: items
+            }]
+          });
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function () {
+            if (typeof gtag === 'function') gtag('event', 'purchase', { value: cartTotals().total, currency: 'EUR' });
+            cart = [];
+            renderCart();
+            const body = document.getElementById('cart-body');
+            const succ = document.getElementById('cart-success');
+            if (body) body.style.display = 'none';
+            if (succ) succ.style.display = 'block';
+          });
+        }
+      }).render('#paypal-cart-button');
+    });
+  }
+
+  // Build each colour card: crown-fit line + price + Add to cart + tap behaviour.
   (function initStrapCards() {
     const isTouch = window.matchMedia('(hover: none)').matches;
     document.querySelectorAll('.color-card').forEach(card => {
@@ -1667,27 +1850,17 @@
       if (fitEl) {
         const p = document.createElement('div');
         p.className = 'strap-price';
-        p.innerHTML = (STRAP_PRICE_WAS ? '<span class="strap-was">€' + STRAP_PRICE_WAS + '</span>' : '') + '<span class="strap-now">€' + STRAP_PRICE + '</span>';
+        p.innerHTML = '<span class="strap-now">€' + STRAP_PRICE + '</span>';
         fitEl.insertAdjacentElement('afterend', p);
       }
       if (actEl) {
-        const a = document.createElement('a');
+        const a = document.createElement('button');
+        a.type = 'button';
         a.className = 'strap-buy-btn';
-        a.href = strapLink(color) || '#';
-        a.textContent = 'Buy now';
-        a.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          if (strapLink(color)) {
-            goToStrap(color);
-          } else {
-            const nm = card.querySelector('.color-name');
-            alert('PayPal link not set yet for ' + (nm ? nm.textContent : color) + '. Paste it into the STRAPS list in the code.');
-          }
-        });
+        a.textContent = 'Add to cart';
+        a.addEventListener('click', (e) => { e.stopPropagation(); addToCart(color); });
         actEl.appendChild(a);
       }
-      // Desktop: click opens modal. Touch: first tap flips preview, second opens.
       card.addEventListener('click', (e) => {
         if (e.target.closest('.strap-buy-btn')) return;
         if (isTouch && !card.classList.contains('flipped')) {
@@ -1698,6 +1871,7 @@
         openModal(color);
       });
     });
+    renderCart();
   })();
 
   function closeModal(event) {
@@ -1710,9 +1884,7 @@
   }
 
   function modalBuy() {
-    const color = window.currentColor;
-    if (strapLink(color)) { goToStrap(color); return; }
-    alert('PayPal link not set yet for this colour. Paste it into the STRAPS list in the code.');
+    if (window.currentColor) { addToCart(window.currentColor); closeModal(); }
   }
 
   // Close modal on Escape key
@@ -1898,6 +2070,34 @@
     }, 4000);
   });
 </script>
+
+<!-- ===== CART ===== -->
+<button id="cart-fab" class="cart-fab" onclick="openCart()" style="display:none" aria-label="Open bag">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  <span id="cart-count" class="cart-count">0</span>
+</button>
+
+<div id="cart-overlay" class="cart-overlay" onclick="closeCart(event)">
+  <div class="cart-panel" onclick="event.stopPropagation()">
+    <button class="cart-close" onclick="closeCart()" aria-label="Close">&times;</button>
+    <h3 class="cart-title">Your bag</h3>
+    <p class="cart-promo">Buy 2, get 1 free — every 3rd strap is on us.</p>
+    <div id="cart-body">
+      <div id="cart-items"></div>
+      <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
+      <div id="cart-summary" class="cart-summary"></div>
+      <div id="paypal-cart-button" class="paypal-cart-button"></div>
+      <p class="cart-foot">Secure checkout via PayPal · pay by card or PayPal</p>
+    </div>
+    <div id="cart-success" class="cart-success" style="display:none">
+      <div class="cart-success-icon">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h4>Order placed</h4>
+      <p>Thank you — check your email for confirmation.</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
