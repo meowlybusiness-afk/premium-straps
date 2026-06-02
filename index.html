@@ -738,12 +738,13 @@
   .cart-close { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 50%; border: none; background: var(--bg-alt); font-size: 22px; color: var(--text); cursor: pointer; }
   .cart-title { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
   .cart-promo { font-size: 14px; color: var(--blue); font-weight: 500; margin-bottom: 22px; }
-  .cart-row { display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .cart-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
   .cart-row-name em { color: var(--text-muted); font-style: normal; font-size: 13px; }
-  .cart-row-qty { color: var(--text-muted); }
-  .cart-row-price { font-weight: 600; }
-  .cart-row-rm { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; font-size: 16px; line-height: 1; }
-  .cart-row-rm:hover { background: var(--bg-alt); }
+  .cart-row-price { font-weight: 600; min-width: 52px; text-align: right; }
+  .cart-stepper { display: inline-flex; align-items: center; gap: 10px; }
+  .cart-step { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; font-size: 16px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .cart-step:hover { background: var(--bg-alt); }
+  .cart-step-qty { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
   .cart-empty { color: var(--text-muted); padding: 28px 0; text-align: center; }
   .cart-summary { margin: 16px 0 22px; }
   .cart-line { display: flex; justify-content: space-between; font-size: 15px; padding: 6px 0; }
@@ -1296,6 +1297,11 @@
     if (i > -1) cart.splice(i, 1);
     renderCart();
   }
+  function addOne(color) {
+    if (!itemInfo(color)) return;
+    cart.push(color);
+    renderCart();
+  }
 
   function renderCart() {
     const t = cartTotals();
@@ -1319,12 +1325,16 @@
       const info = itemInfo(c);
       row.innerHTML =
         '<span class="cart-row-name">' + info.name + " <em>(" + info.sub + ")</em></span>" +
-        '<span class="cart-row-qty">×' + counts[c] + '</span>' +
-        '<span class="cart-row-price">€' + (counts[c] * info.price) + '</span>' +
-        '<button type="button" class="cart-row-rm" data-rm="' + c + '" aria-label="Remove one">&minus;</button>';
+        '<span class="cart-stepper">' +
+          '<button type="button" class="cart-step" data-rm="' + c + '" aria-label="Remove one">&minus;</button>' +
+          '<span class="cart-step-qty">' + counts[c] + '</span>' +
+          '<button type="button" class="cart-step" data-add="' + c + '" aria-label="Add one">+</button>' +
+        '</span>' +
+        '<span class="cart-row-price">€' + (counts[c] * info.price) + '</span>';
       itemsEl.appendChild(row);
     });
     itemsEl.querySelectorAll('[data-rm]').forEach(b => b.addEventListener('click', () => removeOne(b.getAttribute('data-rm'))));
+    itemsEl.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => addOne(b.getAttribute('data-add'))));
     if (emptyEl) emptyEl.style.display = t.qty ? 'none' : 'block';
 
     if (sumEl) {
