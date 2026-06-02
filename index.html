@@ -1166,7 +1166,17 @@
   }
   const PAYPAL_CLIENT_ID = "AVyCnKa-Ton9RNz408HlG43ROfuHKkkxPYFR_sFkGTdt0pRHPvJIgRgKiS0Ct9yC5VSkT6RN2Bo_q_i2";
 
-  let cart = [];  // one entry per strap (colour key)
+  function loadCart() {
+    try {
+      const s = localStorage.getItem('ps_cart');
+      const a = s ? JSON.parse(s) : [];
+      return Array.isArray(a) ? a.filter(k => itemInfo(k)) : [];
+    } catch (e) { return []; }
+  }
+  function saveCart() {
+    try { localStorage.setItem('ps_cart', JSON.stringify(cart)); } catch (e) {}
+  }
+  let cart = loadCart();  // survives a page reload / PayPal redirect round-trip
 
   function cartTotals() {
     const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
@@ -1225,6 +1235,7 @@
 
   function renderCart() {
     const t = cartTotals();
+    saveCart();
     const fab = document.getElementById('cart-fab');
     const countEl = document.getElementById('cart-count');
     if (countEl) countEl.textContent = t.qty;
@@ -1346,8 +1357,16 @@
             if (body) body.style.display = 'none';
             if (succ) succ.style.display = 'block';
           });
+        },
+        onCancel: function () {
+          renderPayPalButton(); // bring the button back if PayPal was dismissed
+        },
+        onError: function (err) {
+          console.error('PayPal error', err);
+          const c = document.getElementById('paypal-cart-button');
+          if (c) c.insertAdjacentHTML('beforeend', '<p class="cart-note" id="pp-err">Couldn\u2019t start PayPal checkout. Please try again, or use a different account/card.</p>');
         }
-      }).render('#paypal-cart-button');
+      }).render('#paypal-cart-button').catch(function (e) { console.error('PayPal render failed', e); });
     });
   }
 
