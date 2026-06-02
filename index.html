@@ -1263,7 +1263,7 @@
 </head>
 <body>
 
-<div class="promo-bar">Buy 2, get 1 free — every 3rd strap is on us.</div>
+<div class="promo-bar">Buy 2, get 1 free — every 3rd item is on us.</div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">Premium Straps</a>
@@ -1304,7 +1304,7 @@
       </ul>
       <div class="cm-buy">
         <div class="cm-price"><span class="cm-was">€100</span><span class="cm-cur">€</span><span id="cm-price-val">60</span></div>
-        <a id="buy-now-btn" class="btn-buy">Buy now</a>
+        <a id="buy-now-btn" class="btn-buy">Add to cart</a>
       </div>
       <p class="cm-note">Pay by card or PayPal · Ships fast from Europe</p>
     </div>
@@ -1643,18 +1643,12 @@
        3. paste that PayPal link below
      Buyers can pay by card without a PayPal account.
      ========================================================= */
-  const PAY_URL = "https://www.paypal.com/ncp/payment/XDN8KMV26NNF8";
-
+  // Car mount now adds to the unified cart (price lives in CARMOUNT_PRICE).
   const buyBtn = document.getElementById('buy-now-btn');
   if (buyBtn) {
     buyBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (PAY_URL.includes('REPLACE')) {
-        alert('Payment link not set yet. Open the code and paste your PayPal link into PAY_URL.');
-        return;
-      }
-      if (typeof gtag === 'function') gtag('event', 'begin_checkout', { value: 60, currency: 'EUR', items: ['Royal Pop Car Mount'] });
-      window.location.href = PAY_URL;
+      addToCart('carmount', document.querySelector('.cm-main'));
     });
   }
 
@@ -1715,22 +1709,29 @@
     orenji:  { name: 'Orenji',   crown: '12' },
   };
 
-  /* ↓↓↓ PASTE YOUR PAYPAL CLIENT ID HERE ↓↓↓
-     developer.paypal.com → Apps & Credentials → (Live) → create app → copy Client ID  */
+  const CARMOUNT_PRICE = 60;     // EUR — car mount, now part of the cart
+  const CARMOUNT_WAS = 100;
+  function itemInfo(key) {
+    if (key === 'carmount') return { name: 'Royal Pop Car Mount', price: CARMOUNT_PRICE, sub: 'air-vent mount' };
+    if (STRAP_META[key]) return { name: STRAP_META[key].name, price: STRAP_PRICE, sub: STRAP_META[key].crown + " o'clock" };
+    return null;
+  }
   const PAYPAL_CLIENT_ID = "AVyCnKa-Ton9RNz408HlG43ROfuHKkkxPYFR_sFkGTdt0pRHPvJIgRgKiS0Ct9yC5VSkT6RN2Bo_q_i2";
 
   let cart = [];  // one entry per strap (colour key)
 
   function cartTotals() {
-    const qty = cart.length;
-    const free = Math.floor(qty / 3);      // buy 2, get 1 free → every 3rd strap free
-    const gross = qty * STRAP_PRICE;
-    const discount = free * STRAP_PRICE;   // all straps same price
+    const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
+    const qty = prices.length;
+    const free = Math.floor(qty / 3);              // every 3rd item free (3-for-2)
+    let discount = 0;
+    for (let i = 0; i < free; i++) discount += prices[i]; // the cheapest items go free
+    const gross = prices.reduce((a, b) => a + b, 0);
     return { qty, free, gross, discount, total: gross - discount };
   }
 
   function addToCart(color, sourceEl) {
-    if (!STRAP_META[color]) return;
+    if (!itemInfo(color)) return;
     cart.push(color);
     renderCart();          // updates count + reveals the bag button
     flyToCart(sourceEl);   // animate into the bag — no drawer open
@@ -1792,10 +1793,11 @@
     Object.keys(counts).forEach(c => {
       const row = document.createElement('div');
       row.className = 'cart-row';
+      const info = itemInfo(c);
       row.innerHTML =
-        '<span class="cart-row-name">' + STRAP_META[c].name + " <em>(" + STRAP_META[c].crown + " o'clock)</em></span>" +
+        '<span class="cart-row-name">' + info.name + " <em>(" + info.sub + ")</em></span>" +
         '<span class="cart-row-qty">×' + counts[c] + '</span>' +
-        '<span class="cart-row-price">€' + (counts[c] * STRAP_PRICE) + '</span>' +
+        '<span class="cart-row-price">€' + (counts[c] * info.price) + '</span>' +
         '<button type="button" class="cart-row-rm" data-rm="' + c + '" aria-label="Remove one">&minus;</button>';
       itemsEl.appendChild(row);
     });
@@ -1806,9 +1808,9 @@
       const mod = t.qty % 3;
       const need = mod === 0 ? 0 : 3 - mod;
       sumEl.innerHTML = t.qty ? (
-        (t.free ? '<div class="cart-line cart-free"><span>Free straps (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
+        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
         '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
-        (need ? '<div class="cart-hint">Add ' + need + ' more for a free strap</div>' : '')
+        (need ? '<div class="cart-hint">Add ' + need + ' more for a free item</div>' : '')
       ) : '';
     }
     renderPayPalButton();
@@ -1864,11 +1866,14 @@
           const tt = cartTotals();
           const counts = {};
           cart.forEach(x => counts[x] = (counts[x] || 0) + 1);
-          const items = Object.keys(counts).map(x => ({
-            name: 'Royal Pop Strap — ' + STRAP_META[x].name + " (" + STRAP_META[x].crown + " o'clock)",
-            quantity: String(counts[x]),
-            unit_amount: { currency_code: 'EUR', value: STRAP_PRICE.toFixed(2) }
-          }));
+          const items = Object.keys(counts).map(x => {
+            const info = itemInfo(x);
+            return {
+              name: info.name + ' (' + info.sub + ')',
+              quantity: String(counts[x]),
+              unit_amount: { currency_code: 'EUR', value: info.price.toFixed(2) }
+            };
+          });
           return actions.order.create({
             purchase_units: [{
               amount: {
@@ -2141,7 +2146,7 @@
   <div class="cart-panel" onclick="event.stopPropagation()">
     <button class="cart-close" onclick="closeCart()" aria-label="Close">&times;</button>
     <h3 class="cart-title">Your bag</h3>
-    <p class="cart-promo">Buy 2, get 1 free — every 3rd strap is on us.</p>
+    <p class="cart-promo">Buy 2, get 1 free — every 3rd item is on us.</p>
     <div id="cart-body">
       <div id="cart-items"></div>
       <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
