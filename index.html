@@ -954,8 +954,8 @@
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
         <div class="color-image">
-          <img class="img-strap" src="images/watch-noir.png" alt="Noir strap">
-          <img class="img-watch" src="images/strap-noir.png" alt="Noir Royal Pop">
+          <img class="img-strap" src="images/strap-noir.png" alt="Noir strap">
+          <img class="img-watch" src="images/watch-noir.png" alt="Noir Royal Pop">
         </div>
         <div class="color-name">Noir</div>
         <div class="strap-fit" data-fit></div>
@@ -997,12 +997,12 @@
         <div class="strap-fit" data-fit></div>
         <div class="strap-action" data-action></div>
       </div>
-      <div class="color-card" data-color="bleumer" data-crown="12">
+      <div class="color-card" data-color="sakura" data-crown="3">
         <div class="color-image">
-          <img class="img-strap" src="images/strap-bleumer.png" alt="Bleu Mer strap">
-          <img class="img-watch" src="images/watch-bleumer.png" alt="Bleu Mer Royal Pop">
+          <img class="img-strap" src="images/strap-sakura.png" alt="Sakura strap">
+          <img class="img-watch" src="images/watch-sakura.png" alt="Sakura Royal Pop">
         </div>
-        <div class="color-name">Bleu Mer</div>
+        <div class="color-name">Sakura</div>
         <div class="strap-fit" data-fit></div>
         <div class="strap-action" data-action></div>
       </div>
@@ -1180,14 +1180,14 @@
 
   // PRODUCT MODAL DATA
   const colorData = {
-    blanc:   { name: 'Blanc.',    desc: 'Soft, off-white silicone with a powdery matte finish. Designed to complement the white Royal Pop colorway.' },
-    noir:    { name: 'Noir.',     desc: 'Deep matte black silicone. The most versatile colorway, pairing with every Royal Pop variant.' },
-    verde:   { name: 'Verde.',    desc: 'Emerald green silicone. A bold complement to the Verde Royal Pop, or a striking contrast on other models.' },
-    jaune:   { name: 'Jaune.',    desc: 'Warm cream-yellow silicone. Subtle, sophisticated, and pairs beautifully with the Lan Ba Lépine.' },
-    lanba:   { name: 'Lan Ba.',   desc: 'Deep navy silicone, named after the iconic Lan Ba Savonnette. Marine blue with quiet authority.' },
-    bleumer: { name: 'Bleu Mer.', desc: 'Aqua turquoise silicone with a sea-glass softness. Pairs naturally with the turquoise Royal Pop colorway.' },
-    rose:    { name: 'Rose.',     desc: 'Powdery pink silicone, restrained and refined. Pairs with the Rose Royal Pop or adds warmth to neutrals.' },
-    orenji:  { name: 'Orenji.',   desc: 'Deep navy with the unmistakable orange basketball-stitch detail. The collector\'s choice.' }
+    blanc:   { name: 'Blanc.',    desc: 'White / white. Clean monochrome silicone with a powdery matte finish — the quiet all-rounder.' },
+    noir:    { name: 'Noir.',     desc: 'Black / white. Deep matte black with crisp white keepers. The most versatile colorway, pairs with everything.' },
+    verde:   { name: 'Verde.',    desc: 'Grass green / dark green. Vivid green silicone with deep-green keepers. Bold and unmistakable.' },
+    jaune:   { name: 'Jaune.',    desc: 'Yellow / sky blue. Bright yellow silicone with soft sky-blue keepers. Summer on the wrist.' },
+    lanba:   { name: 'Lan Ba.',   desc: 'Dark blue / sky blue. Deep navy silicone with sky-blue keepers. Marine blue with quiet authority.' },
+    sakura:  { name: 'Sakura.',   desc: 'Pink / yellow. Rose-pink silicone with sunny yellow keepers. Playful and warm.' },
+    rose:    { name: 'Rose.',     desc: 'Sand pink / red. Powdery sand-pink silicone with red keepers. Restrained and refined.' },
+    orenji:  { name: 'Orenji.',   desc: 'Dark blue / orange. Deep navy with the unmistakable orange keeper detail. The collector\'s choice.' }
   };
 
   function openModal(color) {
@@ -1195,14 +1195,8 @@
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.name;
     document.getElementById('modalDesc').textContent = data.desc;
-    // Noir files are swapped on the server — swap refs here
-    if (color === 'noir') {
-      document.getElementById('modalStrapImg').src = `images/watch-noir.png`;
-      document.getElementById('modalWatchImg').src = `images/strap-noir.png`;
-    } else {
-      document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
-      document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
-    }
+    document.getElementById('modalStrapImg').src = `images/strap-${color}.png`;
+    document.getElementById('modalWatchImg').src = `images/watch-${color}.png`;
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
     window.currentColor = color;
@@ -1214,14 +1208,14 @@
   const STRAP_PRICE = 95;        // EUR per strap (what they pay)
   const STRAP_PRICE_WAS = 149;   // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
-    noir:    { name: 'Noir',     crown: '12' },
-    blanc:   { name: 'Blanc',    crown: '12' },
-    verde:   { name: 'Verde',    crown: '12' },
-    jaune:   { name: 'Jaune',    crown: '12' },
-    lanba:   { name: 'Lan Ba',   crown: '3'  },
-    bleumer: { name: 'Bleu Mer', crown: '12' },
-    rose:    { name: 'Rose',     crown: '12' },
-    orenji:  { name: 'Orenji',   crown: '12' },
+    noir:    { name: 'Noir',     crown: '12', color: 'Black / white' },
+    blanc:   { name: 'Blanc',    crown: '12', color: 'White' },
+    verde:   { name: 'Verde',    crown: '12', color: 'Grass green / dark green' },
+    jaune:   { name: 'Jaune',    crown: '12', color: 'Yellow / sky blue' },
+    lanba:   { name: 'Lan Ba',   crown: '3',  color: 'Dark blue / sky blue' },
+    sakura:  { name: 'Sakura',   crown: '3',  color: 'Pink / yellow' },
+    rose:    { name: 'Rose',     crown: '12', color: 'Sand pink / red' },
+    orenji:  { name: 'Orenji',   crown: '12', color: 'Dark blue / orange' },
   };
 
   const CARMOUNT_PRICE = 60;     // EUR — car mount, now part of the cart
@@ -1465,7 +1459,11 @@
       const crown = card.getAttribute('data-crown');
       const fitEl = card.querySelector('[data-fit]');
       const actEl = card.querySelector('[data-action]');
-      if (fitEl && crown) fitEl.textContent = "Fits " + crown + " o'clock crown";
+      if (fitEl && crown) {
+        const meta = STRAP_META[color];
+        const colorTxt = meta && meta.color ? meta.color + " · " : "";
+        fitEl.textContent = colorTxt + "Fits " + crown + " o'clock crown";
+      }
       if (fitEl) {
         const p = document.createElement('div');
         p.className = 'strap-price';
