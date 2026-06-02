@@ -759,7 +759,9 @@
   .cart-success h4 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
   .cart-success p { color: var(--text-muted); }
   .cart-success-order { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; font-variant-numeric: tabular-nums; word-break: break-all; }
-  .cart-success .next-steps { text-align: left; max-width: 320px; margin: 14px auto 18px; padding-left: 20px; color: var(--text); font-size: 14px; line-height: 1.6; }
+  .cart-success-lead { font-size: 15px; color: var(--text); margin-bottom: 4px; }
+  .cart-success .next-steps { text-align: left; max-width: 360px; margin: 14px auto 18px; padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+  .cart-success .next-steps strong { color: var(--text); }
   .cart-success .next-steps li { margin-bottom: 8px; }
   .cart-success-help { font-size: 13px; color: var(--text-muted); margin: 10px 0 18px; }
   .cart-success-help a { color: var(--blue); text-decoration: none; }
@@ -1560,13 +1562,13 @@
       </div>
       <h4>Thank you for your purchase!</h4>
       <p class="cart-success-order" id="order-id"></p>
-      <p>Your order is confirmed. Here's what happens next:</p>
+      <p class="cart-success-lead">Your payment was processed securely by PayPal and your order is confirmed.</p>
       <ol class="next-steps">
-        <li>You'll receive a confirmation email with your receipt.</li>
-        <li>We pack and dispatch from Europe within a week.</li>
-        <li>A tracking link is sent to you as soon as it ships.</li>
+        <li><strong>Receipt email:</strong> PayPal is sending your confirmation now — it usually arrives within a few minutes. If you don't see it, please check your spam folder.</li>
+        <li><strong>On your statement:</strong> the charge appears through PayPal as <strong>Premium Straps</strong>, so you'll recognise it — no need to worry.</li>
+        <li><strong>Shipping:</strong> we pack and dispatch from Europe within a week and email you a tracking link the moment it ships.</li>
       </ol>
-      <p class="cart-success-help">Questions? Email <a href="mailto:meowlybusiness@gmail.com">meowlybusiness@gmail.com</a></p>
+      <p class="cart-success-help">Questions about your order? Email <a href="mailto:meowlybusiness@gmail.com">meowlybusiness@gmail.com</a> — we reply quickly.</p>
       <button type="button" class="cart-continue" onclick="closeThankYou()">Continue shopping</button>
     </div>
   </div>
