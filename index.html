@@ -209,40 +209,6 @@
     padding: 100px 22px;
   }
 
-  /* Specs section with rotating strap as background */
-  #specs {
-    position: relative;
-    overflow: hidden;
-  }
-  .specs-bg-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 95%;
-    width: auto;
-    max-width: none;
-    z-index: 1;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-  .specs-bg-veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0.2) 50%,
-      rgba(255,255,255,0.55) 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  #specs .section-inner {
-    position: relative;
-    z-index: 3;
-  }
-  @media (max-width: 768px) {
-    .specs-bg-video { height: 70%; opacity: 0.3; }
-  }
 
   .section-dark {
     background: var(--bg-dark);
@@ -892,10 +858,6 @@
 
 
 <section id="specs">
-  <video class="specs-bg-video" autoplay loop muted playsinline preload="auto">
-    <source src="images/strap-rotate.mp4" type="video/mp4">
-  </video>
-  <div class="specs-bg-veil"></div>
   <div class="section-inner">
     <p class="section-eyebrow">Materials and fit.</p>
     <h2>Three things matter.</h2>
