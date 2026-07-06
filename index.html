@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Straps | For the AP Ã Swatch Royal Pop</title>
-<meta name="description" content="Premium 3D-printed adapter and silicone strap for the AP Ã Swatch Royal Pop. Made in Riga. Eight colors.">
+<title>Premium Straps | For the AP × Swatch Royal Pop</title>
+<meta name="description" content="Premium 3D-printed adapter and silicone strap for the AP × Swatch Royal Pop. Made in Riga. Eight colors.">
 <link rel="icon" type="image/png" href="images/logo-monogram.png">
 <link rel="apple-touch-icon" href="images/logo-monogram.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,7 +196,7 @@
     transition: opacity 0.2s;
   }
 
-  .btn-link::after { content: ' âº'; }
+  .btn-link::after { content: ' ›'; }
   .btn-link:hover { opacity: 0.8; }
 
   /* SECTIONS */
@@ -336,7 +336,7 @@
   .color-image .img-watch { opacity: 0; }
   .color-image .img-strap { opacity: 1; }
 
-  /* on hover: crossfade â watch fades in, strap fades out */
+  /* on hover: crossfade — watch fades in, strap fades out */
   .color-card:hover .color-image .img-watch { opacity: 1; }
   .color-card:hover .color-image .img-strap { opacity: 0; }
 
@@ -765,7 +765,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">New</p>
     <h1>Premium Straps.</h1>
-    <p class="hero-sub">Built for the AP Ã Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
+    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
     <div class="hero-actions">
       <a href="#colors" class="btn-primary">Buy now</a>
       <a href="#colors" class="btn-link">See straps</a>
@@ -777,7 +777,7 @@
   <div class="section-inner">
     <div class="promo-badge">Buy 2, get 1 free</div>
     <h2>Eight colors.</h2>
-    <p class="section-sub">â¬95 each. Every 3rd strap is free. Tap a colour to add it to your bag.</p>
+    <p class="section-sub">€95 each. Every 3rd strap is free. Tap a colour to add it to your bag.</p>
 
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
@@ -885,7 +885,7 @@
           <path d="M18 18h12v12H18z"/>
         </svg>
         <h3>Both crowns</h3>
-        <p>Designed for both the LÃ©pine and Savonnette models. One strap. Either watch.</p>
+        <p>Designed for both the Lépine and Savonnette models. One strap. Either watch.</p>
       </div>
     </div>
   </div>
@@ -943,7 +943,7 @@
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
-          <p>Yes. Our adapter is designed to fit both LÃ©pine references (crown at 3 o'clock) and Savonnette references (crown at 12 o'clock). Between the two, every Royal Pop colorway is covered.</p>
+          <p>Yes. Our adapter is designed to fit both Lépine references (crown at 3 o'clock) and Savonnette references (crown at 12 o'clock). Between the two, every Royal Pop colorway is covered.</p>
           <p>You choose your color at checkout. All 8 are available now.</p>
         </div>
       </div>
@@ -1003,7 +1003,7 @@
       <a href="mailto:meowlybusiness@gmail.com">Contact</a>
     </div>
     <div class="footer-bottom">
-      <div>Â© 2026 Premium Straps. Made in Europe.</div>
+      <div>© 2026 Premium Straps. Made in Europe.</div>
       <p class="disclaimer">Premium Straps is an independent product. Not affiliated with, endorsed by, or connected to Audemars Piguet, Swatch Ltd., or The Swatch Group. "Royal Pop" and related marks belong to their respective owners and are used here descriptively only.</p>
     </div>
   </div>
@@ -1011,7 +1011,7 @@
 
 <script>
   /* =========================================================
-     PAYPAL â checkout is handled by the cart + PayPal JS SDK.
+     PAYPAL — checkout is handled by the cart + PayPal JS SDK.
      Buyers can pay by card without a PayPal account.
      ========================================================= */
 
@@ -1087,7 +1087,7 @@
     if (!itemInfo(color)) return;
     cart.push(color);
     renderCart();          // updates count + reveals the bag button
-    flyToCart(sourceEl);   // animate into the bag â no drawer open
+    flyToCart(sourceEl);   // animate into the bag — no drawer open
   }
   function bumpFab() {
     const fab = document.getElementById('cart-fab');
@@ -1160,7 +1160,7 @@
           '<span class="cart-step-qty">' + counts[c] + '</span>' +
           '<button type="button" class="cart-step" data-add="' + c + '" aria-label="Add one">+</button>' +
         '</span>' +
-        '<span class="cart-row-price">â¬' + (counts[c] * info.price) + '</span>';
+        '<span class="cart-row-price">€' + (counts[c] * info.price) + '</span>';
       itemsEl.appendChild(row);
     });
     itemsEl.querySelectorAll('[data-rm]').forEach(b => b.addEventListener('click', () => removeOne(b.getAttribute('data-rm'))));
@@ -1171,8 +1171,8 @@
       const mod = t.qty % 3;
       const need = mod === 0 ? 0 : 3 - mod;
       sumEl.innerHTML = t.qty ? (
-        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>ââ¬' + t.discount + '</span></div>' : '') +
-        '<div class="cart-line cart-total"><span>Total</span><span>â¬' + t.total + '</span></div>' +
+        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
+        '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
         (need ? '<div class="cart-hint">Add ' + need + ' more for a free item</div>' : '')
       ) : '';
     }
@@ -1224,7 +1224,7 @@
     c.innerHTML = '';
     if (cartTotals().qty === 0) return;
     const ov = document.getElementById('cart-overlay');
-    if (!ov || !ov.classList.contains('active')) return; // render only when drawer is visible â PayPal won't mount in a hidden/zero-size box (mobile)
+    if (!ov || !ov.classList.contains('active')) return; // render only when drawer is visible — PayPal won't mount in a hidden/zero-size box (mobile)
     if (PAYPAL_CLIENT_ID.indexOf('PASTE') !== -1) {
       c.innerHTML = '<p class="cart-note">Checkout goes live once your PayPal Client ID is added in the code.</p>';
       return;
@@ -1295,13 +1295,13 @@
       const actEl = card.querySelector('[data-action]');
       if (fitEl && crown) {
         const meta = STRAP_META[color];
-        const colorTxt = meta && meta.color ? meta.color + " Â· " : "";
+        const colorTxt = meta && meta.color ? meta.color + " · " : "";
         fitEl.textContent = colorTxt + "Fits " + crown + " o'clock crown";
       }
       if (fitEl) {
         const p = document.createElement('div');
         p.className = 'strap-price';
-        p.innerHTML = (STRAP_PRICE_WAS ? '<span class="strap-was">â¬' + STRAP_PRICE_WAS + '</span>' : '') + '<span class="strap-now">â¬' + STRAP_PRICE + '</span>';
+        p.innerHTML = (STRAP_PRICE_WAS ? '<span class="strap-was">€' + STRAP_PRICE_WAS + '</span>' : '') + '<span class="strap-now">€' + STRAP_PRICE + '</span>';
         fitEl.insertAdjacentElement('afterend', p);
       }
       if (actEl) {
@@ -1386,7 +1386,7 @@
       <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
       <div id="cart-summary" class="cart-summary"></div>
       <div id="paypal-cart-button" class="paypal-cart-button"></div>
-      <p class="cart-foot">Secure checkout via PayPal Â· pay by card or PayPal</p>
+      <p class="cart-foot">Secure checkout via PayPal · pay by card or PayPal</p>
     </div>
     <div id="cart-success" class="cart-success" style="display:none">
       <div class="cart-success-icon">
@@ -1408,4 +1408,3 @@
 
 </body>
 </html>
-
