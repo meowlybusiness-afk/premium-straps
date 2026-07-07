@@ -757,7 +757,7 @@
 </head>
 <body>
 
-<div class="promo-bar">Buy 2, get 1 free. Every 3rd item is on us.</div>
+<div class="promo-bar">3 for €150 · Free worldwide shipping</div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">Premium Straps</a>
@@ -778,7 +778,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">New</p>
     <h1>Premium Straps.</h1>
-    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
+    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Free worldwide shipping.</p>
     <div class="hero-actions">
       <a href="#colors" class="btn-primary">Buy now</a>
       <a href="#colors" class="btn-link">See straps</a>
@@ -788,9 +788,9 @@
 
 <section id="colors" class="section-tinted">
   <div class="section-inner">
-    <div class="promo-badge">Buy 2, get 1 free</div>
+    <div class="promo-badge">3 for €150</div>
     <h2>Eight colors.</h2>
-    <p class="section-sub">€95 each. Every 3rd strap is free. Tap a colour to add it to your bag.</p>
+    <p class="section-sub">€70 each. 3 for €150. Free worldwide shipping. Tap a colour to add it to your bag.</p>
 
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
@@ -967,7 +967,7 @@
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
-          <p>Orders go out fast, dispatched promptly from Europe, with tracking on every shipment.</p>
+          <p>Free worldwide shipping on every order, dispatched promptly from Europe, with tracking on every shipment.</p>
         </div>
       </div>
 
@@ -1055,7 +1055,7 @@
   }
 
   // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
-  const STRAP_PRICE = 95;        // EUR per strap (what they pay)
+  const STRAP_PRICE = 70;        // EUR per strap (what they pay)
   const STRAP_PRICE_WAS = 149;   // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
     noir:    { name: 'Noir',     crown: '12', color: 'Black / white' },
@@ -1089,9 +1089,8 @@
   function cartTotals() {
     const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
     const qty = prices.length;
-    const free = Math.floor(qty / 3);              // every 3rd item free (3-for-2)
-    let discount = 0;
-    for (let i = 0; i < free; i++) discount += prices[i]; // the cheapest items go free
+    const free = Math.floor(qty / 3);              // completed 3-for-€150 deals
+    const discount = free * 60;              // 3rd strap €10 (save €60 per completed group of 3)
     const gross = prices.reduce((a, b) => a + b, 0);
     return { qty, free, gross, discount, total: gross - discount };
   }
@@ -1184,9 +1183,9 @@
       const mod = t.qty % 3;
       const need = mod === 0 ? 0 : 3 - mod;
       sumEl.innerHTML = t.qty ? (
-        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
+        (t.free ? '<div class="cart-line cart-free"><span>3-for-€150 deal</span><span>−€' + t.discount + '</span></div>' : '') +
         '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
-        (need ? '<div class="cart-hint">Add ' + need + ' more for a free item</div>' : '')
+        (need ? '<div class="cart-hint">Add ' + need + ' more for the 3-for-€150 deal</div>' : '')
       ) : '';
     }
     renderPayPalButton();
@@ -1393,7 +1392,7 @@
   <div class="cart-panel" onclick="event.stopPropagation()">
     <button class="cart-close" onclick="closeCart()" aria-label="Close">&times;</button>
     <h3 class="cart-title">Your bag</h3>
-    <p class="cart-promo">Buy 2, get 1 free. Every 3rd item is on us.</p>
+    <p class="cart-promo">3 for €150 · Free worldwide shipping</p>
     <div id="cart-body">
       <div id="cart-items"></div>
       <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
