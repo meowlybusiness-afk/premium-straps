@@ -870,6 +870,42 @@
 </section>
 
 
+<style>
+  .video-frame { max-width: 420px; margin: 40px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); background: #000; }
+  .showcase-video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+  .testimonial-video-frame { max-width: 360px; margin: 40px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); background: #000; }
+  .testimonial-video { display: block; width: 100%; max-height: 680px; height: auto; aspect-ratio: 480 / 848; object-fit: cover; background: #000; }
+  .testimonial-caption { margin-top: 18px; font-size: 15px; color: var(--text-muted); }
+</style>
+
+<section id="video">
+  <div class="section-inner">
+    <p class="section-eyebrow">See them in motion</p>
+    <h2>Straps in motion.</h2>
+    <div class="video-frame">
+      <video class="showcase-video" autoplay loop muted playsinline preload="auto">
+        <source src="images/straps.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section id="testimonials" class="section-tinted">
+  <div class="section-inner">
+    <p class="section-eyebrow">Reviews</p>
+    <h2>What customers say</h2>
+    <div class="testimonial-video-frame">
+      <video class="testimonial-video" controls playsinline preload="metadata" poster="images/testimonial-poster.jpg">
+        <source src="images/testimonial.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="testimonial-caption">— Verified customer</p>
+    <!-- TESTIMONIALS: featured video above. Add additional testimonial cards here. -->
+  </div>
+</section>
+
+
 <section id="specs">
   <div class="section-inner">
     <p class="section-eyebrow">Materials and fit.</p>
@@ -989,17 +1025,6 @@
         </button>
         <div class="faq-answer">
           <p>No. Premium Straps is an independent product. We are not affiliated with, endorsed by, or connected to Audemars Piguet, Swatch Ltd., or The Swatch Group. We make accessories that are compatible with the Royal Pop.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          What's your return policy?
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          <p>30-day return window from the day you receive your order. If the fit isn't right, the color doesn't match what you expected, or you simply change your mind, send it back for a full refund.</p>
-          <p>Just keep the original packaging. We cover return shipping within Europe.</p>
         </div>
       </div>
     </div>
