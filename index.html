@@ -111,7 +111,16 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
-    opacity: 0.45;
+    opacity: 0.9;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Subtle white veil over hero image for text legibility */
@@ -121,7 +130,7 @@
     inset: 0;
     background: linear-gradient(180deg,
       rgba(255,255,255,0.3) 0%,
-      rgba(255,255,255,0.1) 40%,
+      rgba(255,255,255,0.25) 40%,
       rgba(255,255,255,0.5) 100%);
   }
 
@@ -761,7 +770,11 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="images/hero-lineup.png">
+      <source src="images/hero-loop.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-content">
     <p class="hero-eyebrow">New</p>
     <h1>Premium Straps.</h1>
