@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K355RLS1P6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P35FDR8DY0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-K355RLS1P6');
+  gtag('config', 'G-P35FDR8DY0');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +111,16 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
-    opacity: 0.45;
+    opacity: 0.9;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Subtle white veil over hero image for text legibility */
@@ -121,7 +130,7 @@
     inset: 0;
     background: linear-gradient(180deg,
       rgba(255,255,255,0.3) 0%,
-      rgba(255,255,255,0.1) 40%,
+      rgba(255,255,255,0.25) 40%,
       rgba(255,255,255,0.5) 100%);
   }
 
@@ -209,40 +218,6 @@
     padding: 100px 22px;
   }
 
-  /* Specs section with rotating strap as background */
-  #specs {
-    position: relative;
-    overflow: hidden;
-  }
-  .specs-bg-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 95%;
-    width: auto;
-    max-width: none;
-    z-index: 1;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-  .specs-bg-veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0.2) 50%,
-      rgba(255,255,255,0.55) 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  #specs .section-inner {
-    position: relative;
-    z-index: 3;
-  }
-  @media (max-width: 768px) {
-    .specs-bg-video { height: 70%; opacity: 0.3; }
-  }
 
   .section-dark {
     background: var(--bg-dark);
@@ -782,7 +757,7 @@
 </head>
 <body>
 
-<div class="promo-bar">Buy 2, get 1 free. Every 3rd item is on us.</div>
+<div class="promo-bar">3 for €150 · Free worldwide shipping</div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">Premium Straps</a>
@@ -795,11 +770,15 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="images/hero-lineup.png">
+      <source src="images/hero-loop.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-content">
     <p class="hero-eyebrow">New</p>
     <h1>Premium Straps.</h1>
-    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Eight colors.</p>
+    <p class="hero-sub">Built for the AP × Swatch Royal Pop.<br>Made in Europe. Free worldwide shipping.</p>
     <div class="hero-actions">
       <a href="#colors" class="btn-primary">Buy now</a>
       <a href="#colors" class="btn-link">See straps</a>
@@ -809,9 +788,9 @@
 
 <section id="colors" class="section-tinted">
   <div class="section-inner">
-    <div class="promo-badge">Buy 2, get 1 free</div>
+    <div class="promo-badge">3 for €150</div>
     <h2>Eight colors.</h2>
-    <p class="section-sub">€95 each. Every 3rd strap is free. Tap a colour to add it to your bag.</p>
+    <p class="section-sub">€70 each. 3 for €150. Free worldwide shipping. Tap a colour to add it to your bag.</p>
 
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
@@ -891,11 +870,43 @@
 </section>
 
 
+<style>
+  .video-frame { max-width: 420px; margin: 40px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); background: #000; }
+  .showcase-video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+  .testimonial-video-frame { max-width: 360px; margin: 40px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); background: #000; }
+  .testimonial-video { display: block; width: 100%; max-height: 680px; height: auto; aspect-ratio: 480 / 848; object-fit: cover; background: #000; }
+  .testimonial-caption { margin-top: 18px; font-size: 15px; color: var(--text-muted); }
+</style>
+
+<section id="video">
+  <div class="section-inner">
+    <p class="section-eyebrow">See them in motion</p>
+    <h2>Straps in motion.</h2>
+    <div class="video-frame">
+      <video class="showcase-video" autoplay loop muted playsinline preload="auto" poster="images/straps-poster.jpg">
+        <source src="images/straps.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section id="testimonials" class="section-tinted">
+  <div class="section-inner">
+    <p class="section-eyebrow">Reviews</p>
+    <h2>What customers say</h2>
+    <div class="testimonial-video-frame">
+      <video class="testimonial-video" controls playsinline preload="metadata" poster="images/testimonial-poster.jpg">
+        <source src="images/testimonial.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="testimonial-caption">— Verified customer</p>
+    <!-- TESTIMONIALS: featured video above. Add additional testimonial cards here. -->
+  </div>
+</section>
+
+
 <section id="specs">
-  <video class="specs-bg-video" autoplay loop muted playsinline preload="auto">
-    <source src="images/strap-rotate.mp4" type="video/mp4">
-  </video>
-  <div class="specs-bg-veil"></div>
   <div class="section-inner">
     <p class="section-eyebrow">Materials and fit.</p>
     <h2>Three things matter.</h2>
@@ -992,7 +1003,7 @@
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
-          <p>Orders go out fast, dispatched promptly from Europe, with tracking on every shipment.</p>
+          <p>Free worldwide shipping on every order, dispatched promptly from Europe, with tracking on every shipment.</p>
         </div>
       </div>
 
@@ -1014,17 +1025,6 @@
         </button>
         <div class="faq-answer">
           <p>No. Premium Straps is an independent product. We are not affiliated with, endorsed by, or connected to Audemars Piguet, Swatch Ltd., or The Swatch Group. We make accessories that are compatible with the Royal Pop.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          What's your return policy?
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer">
-          <p>30-day return window from the day you receive your order. If the fit isn't right, the color doesn't match what you expected, or you simply change your mind, send it back for a full refund.</p>
-          <p>Just keep the original packaging. We cover return shipping within Europe.</p>
         </div>
       </div>
     </div>
@@ -1080,8 +1080,8 @@
   }
 
   // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
-  const STRAP_PRICE = 95;        // EUR per strap (what they pay)
-  const STRAP_PRICE_WAS = 149;   // struck-through "was" price (set 0 to hide)
+  const STRAP_PRICE = 70;        // EUR per strap (what they pay)
+  const STRAP_PRICE_WAS = 99;   // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
     noir:    { name: 'Noir',     crown: '12', color: 'Black / white' },
     blanc:   { name: 'Blanc',    crown: '12', color: 'White' },
@@ -1114,9 +1114,8 @@
   function cartTotals() {
     const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
     const qty = prices.length;
-    const free = Math.floor(qty / 3);              // every 3rd item free (3-for-2)
-    let discount = 0;
-    for (let i = 0; i < free; i++) discount += prices[i]; // the cheapest items go free
+    const free = Math.floor(qty / 3);              // completed 3-for-€150 deals
+    const discount = free * 60;              // 3rd strap €10 (save €60 per completed group of 3)
     const gross = prices.reduce((a, b) => a + b, 0);
     return { qty, free, gross, discount, total: gross - discount };
   }
@@ -1209,9 +1208,9 @@
       const mod = t.qty % 3;
       const need = mod === 0 ? 0 : 3 - mod;
       sumEl.innerHTML = t.qty ? (
-        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
+        (t.free ? '<div class="cart-line cart-free"><span>3-for-€150 deal</span><span>−€' + t.discount + '</span></div>' : '') +
         '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
-        (need ? '<div class="cart-hint">Add ' + need + ' more for a free item</div>' : '')
+        (need ? '<div class="cart-hint">Add ' + need + ' more for the 3-for-€150 deal</div>' : '')
       ) : '';
     }
     renderPayPalButton();
@@ -1418,7 +1417,7 @@
   <div class="cart-panel" onclick="event.stopPropagation()">
     <button class="cart-close" onclick="closeCart()" aria-label="Close">&times;</button>
     <h3 class="cart-title">Your bag</h3>
-    <p class="cart-promo">Buy 2, get 1 free. Every 3rd item is on us.</p>
+    <p class="cart-promo">3 for €150 · Free worldwide shipping</p>
     <div id="cart-body">
       <div id="cart-items"></div>
       <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
