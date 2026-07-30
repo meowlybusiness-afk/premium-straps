@@ -1080,7 +1080,7 @@
   }
 
   // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
-  const STRAP_PRICE = 70;        // EUR per strap (what they pay)
+  const STRAP_PRICE = 10;        // EUR per strap (what they pay)
   const STRAP_PRICE_WAS = 99;   // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
     noir:    { name: 'Noir',     crown: '12', color: 'Black / white' },
@@ -1115,7 +1115,7 @@
     const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
     const qty = prices.length;
     const free = Math.floor(qty / 3);              // completed 3-for-€150 deals
-    const discount = free * 60;              // 3rd strap €10 (save €60 per completed group of 3)
+    const discount = free * 0;              // 3rd strap €10 (save €60 per completed group of 3)
     const gross = prices.reduce((a, b) => a + b, 0);
     return { qty, free, gross, discount, total: gross - discount };
   }
