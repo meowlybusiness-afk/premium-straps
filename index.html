@@ -685,69 +685,36 @@
   /* ============ MOBILE OPTIMIZATIONS ============ */
 
   @media (max-width: 768px) {
-    /* Tighter section padding */
     section { padding: 60px 20px; }
-
-    /* Nav: keep brand visible, hide links */
     nav { padding: 12px 16px; }
-
-    /* Hero: tighter spacing, smaller buttons */
     .hero { padding: 80px 20px 60px; min-height: auto; }
     .hero-eyebrow { font-size: 16px; }
     .hero-sub { font-size: 18px; margin-bottom: 20px; }
     .hero-price { font-size: 16px; margin-bottom: 24px; }
     .hero-actions { gap: 14px; }
     .btn-primary, .btn-link { font-size: 16px; padding: 11px 22px; }
-
-    /* Section headings */
     h2 { font-size: clamp(32px, 7vw, 44px) !important; }
     .section-sub { font-size: 17px; }
-
-    /* Features grid: stack vertically */
     .features-grid { grid-template-columns: 1fr !important; gap: 32px; }
-
-    /* Colors grid: 2 cols still but tighter */
     .colors-grid { gap: 12px; }
     .color-image { border-radius: 14px; }
     .color-name { font-size: 16px; }
     .color-meta { font-size: 13px; }
-
-    /* IMPORTANT: enable tap-to-flip on color cards since there's no hover on mobile */
     .color-card.flipped .color-image .img-strap { opacity: 0; }
     .color-card.flipped .color-image .img-watch { opacity: 1; }
-
-    /* Modal: full screen on small devices */
-    .modal-content {
-      padding: 24px 18px;
-      max-width: 100%;
-      margin: 12px;
-      max-height: 92vh;
-    }
-    .modal-images {
-      grid-template-columns: 1fr !important;
-      gap: 12px;
-    }
-    .modal-image-wrapper {
-      padding: 16px;
-      aspect-ratio: 1.2;
-    }
+    .modal-content { padding: 24px 18px; max-width: 100%; margin: 12px; max-height: 92vh; }
+    .modal-images { grid-template-columns: 1fr !important; gap: 12px; }
+    .modal-image-wrapper { padding: 16px; aspect-ratio: 1.2; }
     .modal-title { font-size: 28px !important; }
     .modal-desc { font-size: 15px; }
-
-    /* FAQ: tighter padding */
     .faq-question { font-size: 16px; padding: 18px 0; }
     .faq-answer { font-size: 14px; }
-
-    /* Quote section */
     .quote-text { font-size: clamp(24px, 5vw, 32px); padding: 0 8px; }
-
-    /* Footer */
     .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
     .footer-bottom { flex-direction: column; }
   }
 
   @media (max-width: 480px) {
-    /* Even tighter for small phones */
     .hero h1 { font-size: clamp(42px, 11vw, 64px); }
     .colors-grid { gap: 10px; }
     .color-image { border-radius: 12px; }
@@ -757,7 +724,7 @@
 </head>
 <body>
 
-<div class="promo-bar">3 for €150 · Free worldwide shipping</div>
+<div class="promo-bar">Buy 2, get 1 free · Free worldwide shipping</div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">Premium Straps</a>
@@ -788,9 +755,9 @@
 
 <section id="colors" class="section-tinted">
   <div class="section-inner">
-    <div class="promo-badge">3 for €150</div>
+    <div class="promo-badge">Buy 2, get 1 free</div>
     <h2>Eight colors.</h2>
-    <p class="section-sub">€70 each. 3 for €150. Free worldwide shipping. Tap a colour to add it to your bag.</p>
+    <p class="section-sub">€50 each. Buy 2, get 1 free. Free worldwide shipping. Tap a colour to add it to your bag.</p>
 
     <div class="colors-grid">
       <div class="color-card" data-color="noir" data-crown="12">
@@ -1080,8 +1047,8 @@
   }
 
   // ===== STRAP STORE (cart + Buy-2-Get-1-Free) =====
-  const STRAP_PRICE = 10;        // EUR per strap (what they pay)
-  const STRAP_PRICE_WAS = 99;   // struck-through "was" price (set 0 to hide)
+  const STRAP_PRICE = 50;        // EUR per strap (what they pay)
+  const STRAP_PRICE_WAS = 0;     // struck-through "was" price (set 0 to hide)
   const STRAP_META = {
     noir:    { name: 'Noir',     crown: '12', color: 'Black / white' },
     blanc:   { name: 'Blanc',    crown: '12', color: 'White' },
@@ -1114,8 +1081,9 @@
   function cartTotals() {
     const prices = cart.map(k => itemInfo(k).price).sort((a, b) => a - b); // cheapest first
     const qty = prices.length;
-    const free = Math.floor(qty / 3);              // completed 3-for-€150 deals
-    const discount = free * 0;              // 3rd strap €10 (save €60 per completed group of 3)
+    const free = Math.floor(qty / 3);              // every 3rd item free (buy 2, get 1)
+    let discount = 0;
+    for (let i = 0; i < free; i++) discount += prices[i]; // the cheapest items go free
     const gross = prices.reduce((a, b) => a + b, 0);
     return { qty, free, gross, discount, total: gross - discount };
   }
@@ -1208,9 +1176,9 @@
       const mod = t.qty % 3;
       const need = mod === 0 ? 0 : 3 - mod;
       sumEl.innerHTML = t.qty ? (
-        (t.free ? '<div class="cart-line cart-free"><span>3-for-€150 deal</span><span>−€' + t.discount + '</span></div>' : '') +
+        (t.free ? '<div class="cart-line cart-free"><span>Free item (buy 2, get 1)</span><span>−€' + t.discount + '</span></div>' : '') +
         '<div class="cart-line cart-total"><span>Total</span><span>€' + t.total + '</span></div>' +
-        (need ? '<div class="cart-hint">Add ' + need + ' more for the 3-for-€150 deal</div>' : '')
+        (need ? '<div class="cart-hint">Add ' + need + ' more for a free item</div>' : '')
       ) : '';
     }
     renderPayPalButton();
@@ -1364,7 +1332,6 @@
 
   function closeModal(event) {
     if (event && event.target.id !== 'productModal' && event.type !== undefined) {
-      // only close on overlay click or explicit call
       if (event.target.id !== 'productModal') return;
     }
     document.getElementById('productModal').classList.remove('active');
@@ -1375,7 +1342,6 @@
     if (window.currentColor) { addToCart(window.currentColor, document.getElementById('modalStrapImg')); closeModal(); }
   }
 
-  // Close modal on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
   });
@@ -1385,16 +1351,12 @@
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-
-      // Close all other items (single-open accordion)
       document.querySelectorAll('.faq-item').forEach(other => {
         if (other !== item) {
           other.classList.remove('open');
           other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         }
       });
-
-      // Toggle current
       if (isOpen) {
         item.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
@@ -1417,7 +1379,7 @@
   <div class="cart-panel" onclick="event.stopPropagation()">
     <button class="cart-close" onclick="closeCart()" aria-label="Close">&times;</button>
     <h3 class="cart-title">Your bag</h3>
-    <p class="cart-promo">3 for €150 · Free worldwide shipping</p>
+    <p class="cart-promo">Buy 2, get 1 free · Free worldwide shipping</p>
     <div id="cart-body">
       <div id="cart-items"></div>
       <div id="cart-empty" class="cart-empty">Your bag is empty.</div>
